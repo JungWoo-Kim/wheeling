@@ -8,8 +8,131 @@
 <meta name="keywords" content="">
 <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<link rel="stylesheet" href="../css/style.css">
 <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<link rel="stylesheet" href="../css/style.css">
+<script>
+	$(document).ready(function() {
+		getJsonTourism();
+	});
+
+	function getJsonTourism() {
+		$.ajax({
+			url : '../json/tourism.json',
+			dataType : 'json',
+			success : getJsonTourismValue
+		});
+	}
+
+	/* "DESCRIPTION" : {"SEQ":"고유번호","IMAGES":"시설 이미지(썸네일)","ST12":"휠체어 대여 여부","ST9":"시각장애인 편의서비스 여부","GU":"담당구",
+	"ST11":"안내 서비스 여부","ST10":"청각장애인 편의서비스 여부","SISULNAME":"시설명","TEL":"연락처","ST2":"장애인 전용 주차구역 여부",
+	"ST1":"주출입구 접근로 여부","HIT":"추천수","ST4":"장애인용 승강기 여부","ST3":"주출입구 높이차이 제거 여부","ST6":"장애인용 객실 이용가능 여부",
+	"ADDR":"주소","ST5":"장애인 화장실 여부","HOMEPAGE":"홈페이지","ST8":"장애인 매표소 여부","ST7":"장애인용 관람석 이용가능 여부"},*/
+
+	var tourismTotalCnt = 0;
+	
+	function getJsonTourismValue(geojson) {
+		
+		for (var i = 0; i < geojson.DATA.length; i++) { //79
+			var data = geojson.DATA[i];
+			var content = [
+					'<ul class="detail_list">',
+					'<li><a href="main_list_detail.html"><div class="img">',
+					'<img class="sumbnail" src="'+(data.images != null ? data.images : "http://wis.seoul.go.kr/rest/file/thumbnail/9ifmzu0qgiqp0i99vy63sni68d77qpov/1")+'"alt="">',
+					'</div><div class="right"><p class="tit">' + data.sisulname
+							+ '</p>',
+					'<span class="address">' + data.addr + '</span>',
+					'<ul class="num_views"><li><img src="../images/icon/goods.svg" alt=""><span>'
+							+ data.hit + '</span></li>',
+					'</ul></div></a><button class="hidden"><img class="right" src="../images/icon/hide.svg" alt="">',
+					'<ul class="hidden_box"><li class=""><span class="star"></span><span>즐겨찾기</span>',
+					'</li></ul></button></li></ul>' ].join('');
+			$(".recommend_list").append(content);
+			tourismTotalCnt++;
+		}
+		
+		$('.all').html(tourismTotalCnt);
+	}
+	
+
+    var totalData = tourismTotalCnt;    // 총 데이터 수
+    var dataPerPage = 10;    // 한 페이지에 나타낼 데이터 수
+    var pageCount = 10;        // 한 화면에 나타낼 페이지 수
+    
+    function paging(totalData, dataPerPage, pageCount, currentPage){
+        
+        console.log("currentPage : " + currentPage);
+        
+        var totalPage = Math.ceil(totalData/dataPerPage);    // 총 페이지 수
+        var pageGroup = Math.ceil(currentPage/pageCount);    // 페이지 그룹
+        
+        console.log("pageGroup : " + pageGroup);
+        
+        var last = pageGroup * pageCount;    // 화면에 보여질 마지막 페이지 번호
+        if(last > totalPage)
+            last = totalPage;
+        var first = last - (pageCount-1);    // 화면에 보여질 첫번째 페이지 번호
+        var next = last+1;
+        var prev = first-1;
+        
+        console.log("last : " + last);
+        console.log("first : " + first);
+        console.log("next : " + next);
+        console.log("prev : " + prev);
+ 
+        var $pingingView = $("#paging");
+        
+        var html = "";
+        
+        if(prev > 0)
+            html += "<li class='prev'><a href='#''><img src=''../images/icon/start_arr.svg' alt=''></a></li>";
+        
+        for(var i=first; i <= last; i++){
+            html += "<li><a href='#' id="+ i +">"+ i +"</a></li>";
+        }
+            
+        
+        if(last < totalPage)
+            html += "<a href=# id='next'>></a>";
+        
+        $("#paging").html(html);    // 페이지 목록 생성
+        $("#paging a").css("color", "black");
+        $("#paging a#" + currentPage).css({"text-decoration":"none", 
+                                           "color":"red", 
+                                           "font-weight":"bold"});    // 현재 페이지 표시
+                                           
+        $("#paging a").click(function(){
+            
+            var $item = $(this);
+            var $id = $item.attr("id");
+            var selectedPage = $item.text();
+            
+            if($id == "next")    selectedPage = next;
+            if($id == "prev")    selectedPage = prev;
+            
+            paging(totalData, dataPerPage, pageCount, selectedPage);
+        });
+                                           
+    }
+    
+    $("document").ready(function(){        
+        paging(totalData, dataPerPage, pageCount, 1);
+    });	
+	
+/* 	$(document).ready(function() {
+	    var offset = $('.recommend_list ul').length;
+	 
+	    $('.recommend_list').endlessScroll({
+	        fireOnce: false,
+	        fireDelay: false,
+	        loader: '',
+	        insertAfter: '.recommend_list ul:last',
+	        content: function(i) {
+	            return '<li>' + (i + offset) + '</li>';
+	        }
+	    });
+	});
+ */
+</script>
 </head>
 
 <body>
@@ -140,129 +263,7 @@
         </a>
     </div>
 </div>
-<script>
-	$(document).ready(function() {
-		getJsonTourism();
-	});
 
-	function getJsonTourism() {
-		$.ajax({
-			url : '../json/tourism.json',
-			dataType : 'json',
-			success : getJsonTourismValue
-		});
-	}
-
-	/* "DESCRIPTION" : {"SEQ":"고유번호","IMAGES":"시설 이미지(썸네일)","ST12":"휠체어 대여 여부","ST9":"시각장애인 편의서비스 여부","GU":"담당구",
-	"ST11":"안내 서비스 여부","ST10":"청각장애인 편의서비스 여부","SISULNAME":"시설명","TEL":"연락처","ST2":"장애인 전용 주차구역 여부",
-	"ST1":"주출입구 접근로 여부","HIT":"추천수","ST4":"장애인용 승강기 여부","ST3":"주출입구 높이차이 제거 여부","ST6":"장애인용 객실 이용가능 여부",
-	"ADDR":"주소","ST5":"장애인 화장실 여부","HOMEPAGE":"홈페이지","ST8":"장애인 매표소 여부","ST7":"장애인용 관람석 이용가능 여부"},*/
-
-	var tourismTotalCnt = 0;
-	
-	function getJsonTourismValue(geojson) {
-		
-		for (var i = 0; i < geojson.DATA.length; i++) { //79
-			var data = geojson.DATA[i];
-			var content = [
-					'<ul class="detail_list">',
-					'<li><a href="main_list_detail.html"><div class="img">',
-					'<img class="sumbnail" src="'+(data.images != null ? data.images : "http://wis.seoul.go.kr/rest/file/thumbnail/9ifmzu0qgiqp0i99vy63sni68d77qpov/1")+'"alt="">',
-					'</div><div class="right"><p class="tit">' + data.sisulname
-							+ '</p>',
-					'<span class="address">' + data.addr + '</span>',
-					'<ul class="num_views"><li><img src="../images/icon/goods.svg" alt=""><span>'
-							+ data.hit + '</span></li>',
-					'</ul></div></a><button class="hidden"><img class="right" src="../images/icon/hide.svg" alt="">',
-					'<ul class="hidden_box"><li class=""><span class="star"></span><span>즐겨찾기</span>',
-					'</li></ul></button></li></ul>' ].join('');
-			$(".recommend_list").append(content);
-			tourismTotalCnt++;
-		}
-		
-		$('.all').html(tourismTotalCnt);
-	}
-	
-
-    var totalData = tourismTotalCnt;    // 총 데이터 수
-    var dataPerPage = 10;    // 한 페이지에 나타낼 데이터 수
-    var pageCount = 10;        // 한 화면에 나타낼 페이지 수
-    
-    function paging(totalData, dataPerPage, pageCount, currentPage){
-        
-        console.log("currentPage : " + currentPage);
-        
-        var totalPage = Math.ceil(totalData/dataPerPage);    // 총 페이지 수
-        var pageGroup = Math.ceil(currentPage/pageCount);    // 페이지 그룹
-        
-        console.log("pageGroup : " + pageGroup);
-        
-        var last = pageGroup * pageCount;    // 화면에 보여질 마지막 페이지 번호
-        if(last > totalPage)
-            last = totalPage;
-        var first = last - (pageCount-1);    // 화면에 보여질 첫번째 페이지 번호
-        var next = last+1;
-        var prev = first-1;
-        
-        console.log("last : " + last);
-        console.log("first : " + first);
-        console.log("next : " + next);
-        console.log("prev : " + prev);
- 
-        var $pingingView = $("#paging");
-        
-        var html = "";
-        
-        if(prev > 0)
-            html += "<li class='prev'><a href='#''><img src=''../images/icon/start_arr.svg' alt=''></a></li>";
-        
-        for(var i=first; i <= last; i++){
-            html += "<li><a href='#' id="+ i +">"+ i +"</a></li>";
-        }
-            
-        
-        if(last < totalPage)
-            html += "<a href=# id='next'>></a>";
-        
-        $("#paging").html(html);    // 페이지 목록 생성
-        $("#paging a").css("color", "black");
-        $("#paging a#" + currentPage).css({"text-decoration":"none", 
-                                           "color":"red", 
-                                           "font-weight":"bold"});    // 현재 페이지 표시
-                                           
-        $("#paging a").click(function(){
-            
-            var $item = $(this);
-            var $id = $item.attr("id");
-            var selectedPage = $item.text();
-            
-            if($id == "next")    selectedPage = next;
-            if($id == "prev")    selectedPage = prev;
-            
-            paging(totalData, dataPerPage, pageCount, selectedPage);
-        });
-                                           
-    }
-    
-    $("document").ready(function(){        
-        paging(totalData, dataPerPage, pageCount, 1);
-    });	
-	
-/* 	$(document).ready(function() {
-	    var offset = $('.recommend_list ul').length;
-	 
-	    $('.recommend_list').endlessScroll({
-	        fireOnce: false,
-	        fireDelay: false,
-	        loader: '',
-	        insertAfter: '.recommend_list ul:last',
-	        content: function(i) {
-	            return '<li>' + (i + offset) + '</li>';
-	        }
-	    });
-	});
- */
-</script>
 
 </body>
 </html>
