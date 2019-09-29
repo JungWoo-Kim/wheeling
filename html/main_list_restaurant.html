@@ -161,12 +161,13 @@
 	function getJsonTourismValue(geojson) {
 		var cnt = 0;
 		
+		
 		for (var i = 0; i < geojson.DATA.length; i++) { //79
 			var data = geojson.DATA[i];
 			var content = [
 					'<ul class="detail_list">',
 					'<li><a href="main_list_detail.html"><div class="img">',
-					'<img class="sumbnail" src="'+data.homepage+'"alt="">',
+					'<img class="sumbnail" src="http://wis.seoul.go.kr/rest/file/thumbnail/9ifmzu0qgiqp0i99vy63sni68d77qpov/1"alt="">',
 					'</div><div class="right"><p class="tit">' + data.sisulname
 							+ '</p>',
 					'<span class="address">' + data.addr + '</span>',

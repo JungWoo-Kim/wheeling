@@ -99,7 +99,7 @@
                     </ul>END) detail_list -->
                 </div><!--END) commend_list -->
                     <div class="pagination">
-                        <ul>
+                        <ul id="">
                             <li class="prev"><a href="#"><img src="../images/icon/start_arr.svg" alt=""></a></li>
                             <li class="prev"><a href="#"><img src="../images/icon/prev_arr.svg" alt=""></a></li>
                             <li><a href="#">1</a></li>
@@ -158,15 +158,16 @@
 	"ST1":"주출입구 접근로 여부","HIT":"추천수","ST4":"장애인용 승강기 여부","ST3":"주출입구 높이차이 제거 여부","ST6":"장애인용 객실 이용가능 여부",
 	"ADDR":"주소","ST5":"장애인 화장실 여부","HOMEPAGE":"홈페이지","ST8":"장애인 매표소 여부","ST7":"장애인용 관람석 이용가능 여부"},*/
 
+	var tourismTotalCnt = 0;
+	
 	function getJsonTourismValue(geojson) {
-		var cnt = 0;
 		
 		for (var i = 0; i < geojson.DATA.length; i++) { //79
 			var data = geojson.DATA[i];
 			var content = [
 					'<ul class="detail_list">',
 					'<li><a href="main_list_detail.html"><div class="img">',
-					'<img class="sumbnail" src="'+data.images+'"alt="">',
+					'<img class="sumbnail" src="'+(data.images != null ? data.images : "http://wis.seoul.go.kr/rest/file/thumbnail/9ifmzu0qgiqp0i99vy63sni68d77qpov/1")+'"alt="">',
 					'</div><div class="right"><p class="tit">' + data.sisulname
 							+ '</p>',
 					'<span class="address">' + data.addr + '</span>',
@@ -176,13 +177,78 @@
 					'<ul class="hidden_box"><li class=""><span class="star"></span><span>즐겨찾기</span>',
 					'</li></ul></button></li></ul>' ].join('');
 			$(".recommend_list").append(content);
-			cnt++;
+			tourismTotalCnt++;
 		}
 		
-		$('.all').html(cnt);
+		$('.all').html(tourismTotalCnt);
 	}
 	
-	$(document).ready(function() {
+
+    var totalData = tourismTotalCnt;    // 총 데이터 수
+    var dataPerPage = 10;    // 한 페이지에 나타낼 데이터 수
+    var pageCount = 10;        // 한 화면에 나타낼 페이지 수
+    
+    function paging(totalData, dataPerPage, pageCount, currentPage){
+        
+        console.log("currentPage : " + currentPage);
+        
+        var totalPage = Math.ceil(totalData/dataPerPage);    // 총 페이지 수
+        var pageGroup = Math.ceil(currentPage/pageCount);    // 페이지 그룹
+        
+        console.log("pageGroup : " + pageGroup);
+        
+        var last = pageGroup * pageCount;    // 화면에 보여질 마지막 페이지 번호
+        if(last > totalPage)
+            last = totalPage;
+        var first = last - (pageCount-1);    // 화면에 보여질 첫번째 페이지 번호
+        var next = last+1;
+        var prev = first-1;
+        
+        console.log("last : " + last);
+        console.log("first : " + first);
+        console.log("next : " + next);
+        console.log("prev : " + prev);
+ 
+        var $pingingView = $("#paging");
+        
+        var html = "";
+        
+        if(prev > 0)
+            html += "<li class='prev'><a href='#''><img src=''../images/icon/start_arr.svg' alt=''></a></li>";
+        
+        for(var i=first; i <= last; i++){
+            html += "<li><a href='#' id="+ i +">"+ i +"</a></li>";
+        }
+            
+        
+        if(last < totalPage)
+            html += "<a href=# id='next'>></a>";
+        
+        $("#paging").html(html);    // 페이지 목록 생성
+        $("#paging a").css("color", "black");
+        $("#paging a#" + currentPage).css({"text-decoration":"none", 
+                                           "color":"red", 
+                                           "font-weight":"bold"});    // 현재 페이지 표시
+                                           
+        $("#paging a").click(function(){
+            
+            var $item = $(this);
+            var $id = $item.attr("id");
+            var selectedPage = $item.text();
+            
+            if($id == "next")    selectedPage = next;
+            if($id == "prev")    selectedPage = prev;
+            
+            paging(totalData, dataPerPage, pageCount, selectedPage);
+        });
+                                           
+    }
+    
+    $("document").ready(function(){        
+        paging(totalData, dataPerPage, pageCount, 1);
+    });	
+	
+/* 	$(document).ready(function() {
 	    var offset = $('.recommend_list ul').length;
 	 
 	    $('.recommend_list').endlessScroll({
@@ -195,7 +261,7 @@
 	        }
 	    });
 	});
-
+ */
 </script>
 
 </body>
