@@ -15,8 +15,6 @@
 
 <div id="wrap">
     <div class="container">
-    
-    
         <div class="favorTap">
             <ul class="tabs">
                 <li class="" data-tab="tab-1"><a href="#">관광지</a></li>
@@ -37,7 +35,7 @@
 	        <div id="viewBox" class="favor">
 	            <div class="filter_result favor">
 	                <div class="result_top">
-	                    <p>총 <span class="all">22</span>건</p>
+	                    <p>총 <span class="all" id="all_lodgment">0</span>건</p>
 	                </div>
 	            </div>
 	            <div class="viewBox_in">
@@ -93,7 +91,7 @@
 	        <div id="viewBox" class="favor">
 	            <div class="filter_result favor">
 	                <div class="result_top">
-	                    <p>총 <span class="all">22</span>건</p>
+	                    <p>총 <span class="all">0</span>건</p>
 	                </div>
 	            </div>
 	            <div class="viewBox_in">
@@ -149,7 +147,7 @@
 	        <div id="viewBox" class="favor">
 	            <div class="filter_result favor">
 	                <div class="result_top">
-	                    <p>총 <span class="all">22</span>건</p>
+	                    <p>총 <span class="all" id="all_restaurant">22</span>건</p>
 	                </div>
 	            </div>
 	            <div class="viewBox_in">
@@ -335,8 +333,6 @@
 		$('#recommend_list_wheel .detail_list li .hidden .hidden_box').removeClass('on');
 		if($('#recommend_list_wheel .detail_list #li_list_'+id+' .hidden .hidden_box').hasClass('on')) {
 			$('#recommend_list_wheel .detail_list #li_list_'+id+' .hidden .hidden_box').removeClass('on');
-			
-			
 		} else {
 			$('#recommend_list_wheel .detail_list #li_list_'+id+' .hidden .hidden_box').addClass('on');
 		} 
