@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>메인</title>
+<meta name="Author" content="" />
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<link rel="stylesheet" href="../css/style.css">
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script type="javascript">
+    
+</script>
+</head>
+
+
+<body>
+<div id="wrap">
+    <div class="container">
+        <div id="modal" class="modal">
+            <div class="modalBg"></div>
+            <ol class="center">
+                <li>전체<input type="radio" id="all"><label for="all"></label></li>
+                <li>서울<input type="radio" id="Seoul"><label for="Seoul"></label></li>
+                <li>인천<input type="radio" id="Incheon"><label for="Incheon"></label></li>
+                <li>대구<input type="radio" id="Daegu"><label for="Daegu"></label></li>
+                <li>광주<input type="radio" id="Gwangju"><label for="Gwangju"></label></li>
+                <li>부산<input type="radio" id="Busan"><label for="Busan"></label></li>
+                <li>울산<input type="radio" id="Ulsan"><label for="Ulsan"></label></li>
+                <li>세종<input type="radio" id="Sejong"><label for="Sejong"></label></li>
+                <li>경기<input type="radio" id="Gyeonggi"><label for="Gyeonggi"></label></li>
+                <li>강원<input type="radio" id="Gangwon"><label for="Gangwon"></label></li>
+                <li>충북<input type="radio" id="Chungbuk"><label for="Chungbuk"></label></li>
+                <li>충남<input type="radio" id="Chungnam"><label for="Chungnam"></label></li>
+                <li>경북<input type="radio" id="Gyeongbuk"><label for="Gyeongbuk"></label></li>
+                <li>경남<input type="radio" id="Gyeongnam"><label for="Gyeongnam"></label></li>
+                <li>전북<input type="radio" id="Jeonbuk"><label for="Jeonbuk"></label></li>
+                <li>전남<input type="radio" id="Jeonnam"><label for="Jeonnam"></label></li>
+                <li>제주<input type="radio" id="Jeju"><label for="Jeju"></label></li>
+            </ol>
+        </div>
+        <div class="slider">
+            <div class="img">
+                <p class="banner_word">
+                    <b>국내관광지</b>
+                    쉽고 한눈에 알아보기
+                </p>
+                <img src="../images/shutterstock_412297969.jpg" alt="">
+            </div>
+        </div>
+        <div id="viewBox">
+            <div class="filterBox">
+                <div class="filter">
+                    <div class="selectBox">
+                        <select name="area" id="">
+                            <option value="" selected>지역을 선택하세요</option>
+                        </select>                    
+                    </div>
+                </div>
+                <div class="filterTab">
+                    <ul>
+                        <li><a href="#">전체</a></li>
+                        <li><a href="#">관광지</a></li>
+                        <li><a href="#">숙박</a></li>
+                        <li><a href="#">음식점</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="viewBox_in">
+                <div class="recommend_list">
+                    <div class="list_top">
+                        <p class="tit">
+                            이달의 추천 관광지
+                            <span class="orange">TOP3</span>
+                        </p>
+                        <span class="view_more">
+                            <a href="#">더보기<img src="../images/icon/view_more.svg" alt=""></a>
+                        </span>
+                    </div>
+                    <ul class="grid">
+                        <li>
+                            <a href="main_list.html">
+                                <div class="img">
+                                    <span class="crown"><img src="../images/icon/crown.svg" alt=""></span>
+                                    <img class="sumbnail" src="../images/01.jpg" alt="">
+                                </div>
+                                <p class="tit"><span class="num">1.</span>경복궁</p>
+                                <span class="address">서울특별시 종로구 세종로 사직로 161</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img">
+                                    <img class="sumbnail" src="../images/02.jpg" alt="">
+                                </div>
+                                <p class="tit"><span class="num">2.</span>남산타워</p>
+                                <span class="address">서울특별시 용산구 용산2가동</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img">
+                                    <img class="sumbnail" src="../images/03.jpg" alt="">
+                                </div>
+                                <p class="tit"><span class="num">3.</span>국립중앙박물관</p>
+                                <span class="address">서울특별시 용산구 서빙고동</span>
+                            </a>
+                        </li>
+                    </ul><!--END) grid -->
+                </div><!--END) commend_list -->
+                <div class="recommend_list">
+                    <div class="list_top">
+                        <p class="tit">
+                            이달의 추천 숙박시설
+                            <span class="orange">TOP3</span>
+                        </p>
+                        <span class="view_more">
+                            <a href="#">더보기<img src="../images/icon/view_more.svg" alt=""></a>
+                        </span>
+                    </div>
+                    <ul class="grid">
+                        <li>
+                            <a href="#">
+                                <div class="img">
+                                    <span class="crown"><img src="../images/icon/crown.svg" alt=""></span>
+                                    <img class="sumbnail" src="../images/04.jpg" alt="">
+                                </div>
+                                <p class="tit"><span class="num">1.</span>롯데호텔 월드</p>
+                                <span class="address">서울특별시 송파구 잠실동 올림픽로</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img">
+                                    <img class="sumbnail" src="../images/05.jpg" alt="">
+                                </div>
+                                <p class="tit"><span class="num">2.</span>르 메르디앙 서울</p>
+                                <span class="address">서울특별시 강남구 역삼동 봉은사로</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img">
+                                    <img class="sumbnail" src="../images/06.jpg" alt="">
+                                </div>
+                                <p class="tit"><span class="num">3.</span>비스타 워커힐 서울</p>
+                                <span class="address">서울특별시 광진구 광장동 워커힐로</span>
+                            </a>
+                        </li>
+                    </ul><!--END) grid -->
+                </div><!--END) commend_list -->
+                <div class="recommend_list">
+                    <div class="list_top">
+                        <p class="tit">
+                            이달의 추천 음식점
+                            <span class="orange">TOP3</span>
+                        </p>
+                        <span class="view_more">
+                            <a href="#">더보기<img src="../images/icon/view_more.svg" alt=""></a>
+                        </span>
+                    </div>
+                    <ul class="grid">
+                        <li>
+                            <a href="#">
+                                <div class="img">
+                                    <span class="crown"><img src="../images/icon/crown.svg" alt=""></span>
+                                    <img class="sumbnail" src="../images/07.jpg" alt="">
+                                </div>
+                                <p class="tit"><span class="num">1.</span>지화자</p>
+                                <span class="address">서울특별시 종로구 지하문로 125</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img">
+                                    <img class="sumbnail" src="../images/08.jpg" alt="">
+                                </div>
+                                <p class="tit"><span class="num">2.</span>연남서식당</p>
+                                <span class="address">서울특별시 마포구 백범로2 32</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="img">
+                                    <img class="sumbnail" src="../images/09.jpg" alt="">
+                                </div>
+                                <p class="tit"><span class="num">3.</span>스파카 나폴리</p>
+                                <span class="address">서울특별시 마포구 양화로6길 28</span>
+                            </a>
+                        </li>
+                    </ul><!--END) grid -->
+                </div><!--END) commend_list -->
+            </div>
+        </div><!--END) viewBox -->
+    </div>
+    <div id="mainTap">
+        <a href="main.html" class="home active">
+            <div class="hover">
+                <div class="icon">홈</div>
+                <span>홈</span>
+            </div>
+        </a>
+        <a href="map.html" class="map">
+            <div class="hover">
+                <div class="icon">충전</div>
+                <span>충전·대여</span>
+            </div>
+        </a>
+        <a href="favorite.html" class="favorite">
+            <div class="hover">
+                <div class="icon">즐겨찾기</div>
+                <span>즐겨찾기</span>
+            </div>
+        </a>
+    </div>
+</div>
+</body>
+</html>

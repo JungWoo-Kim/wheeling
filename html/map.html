@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>메인</title>
+    <meta name="Author" content="" />
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <script src="../js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8d49ec79e42821f0bb33101d935cbfb0&libraries=services"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8d49ec79e42821f0bb33101d935cbfb0"></script>
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<div id="wrap">
+    <div class="container">
+        <div class="mapBg" id="mapBg">
+            <div class="map">
+                <div class="filterBox search">
+                    <div class="filter input">
+                        <input type="text" id="srchWrd" title="휠체어 충전소를 검색하세요" placeholder="휠체어 충전소를 검색하세요" />
+                        <input type="submit" onclick="searchWord();" value="검색" id="search"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="result">
+            <div class="left">
+                <h3 id="sttnNm">시설명</h3>
+                <p class="address" id="addr">주소</p>
+                <!-- <p class="address" id="addrDtl">상세주소</p> -->
+                T.<span class="number" id="telNo">연락처</span>
+            </div>
+
+            <button class="favorite" onclick="insertFavorite();">
+                <span class="star"></span>
+            </button>
+
+            <button class="call" onclick="callStation();">전화하기</button>
+        </div>
+    </div><!-- END) container -->
+
+    <div id="mainTap">
+        <a href="main.html" class="home">
+            <div class="hover">
+                <div class="icon">홈</div>
+                <span>홈</span>
+            </div>
+        </a>
+        <a href="map.html" class="map active">
+            <div class="hover">
+                <div class="icon">충전</div>
+                <span>충전·대여</span>
+            </div>
+        </a>
+        <a href="favorite.html" class="favorite">
+            <div class="hover">
+                <div class="icon">즐겨찾기</div>
+                <span>즐겨찾기</span>
+            </div>
+        </a>
+    </div>
+</div>
+</body>
+</html>
+
+<script>
+
+	var map = null;
+	var markersChrg = [];
+	var markersRntl = [];
+
+	var srchWrd = '';
+
+	$(document).ready(function(){
+		$("#map").html("");
+		var mapContainer = document.getElementById('mapBg'), // 지도를 표시할 div
+			mapOption = {
+				center: new daum.maps.LatLng(37.566584921, 126.978194277), // 지도의 중심좌표
+				level: 7
+		};
+
+		map = new daum.maps.Map(mapContainer, mapOption);
+		map.setMaxLevel(11);
+
+		searchWord();
+	});
+
+	function searchWord() {
+		removeMarker();
+
+		var word = $('#srchWrd').val();
+
+ 		if(word=='') word="중구";
+
+		srchWrd = word.trim();// 앞과 뒤의 공백만 제거
+
+		if(srchWrd == "휠체어충전소" || srchWrd == "휠체어 충전소" || srchWrd == "충전소") {
+			srchWrd = '';
+			searchWordChrg();
+		} else if (srchWrd == "휠체어대여소" || srchWrd == "휠체어 대여소" || srchWrd == "대여소") {
+			srchWrd = '';
+			searchWordRntl();
+		} else {
+			searchWordChrg();
+			searchWordRntl();
+		}
+	}
+
+	function searchWordChrg() {
+		getJsonChargingStation();
+	}
+
+	function searchWordRntl() {
+		getJsonRentalStation();
+	}
+
+	function getJsonChargingStation() {
+	 	$.ajax({
+			url: '../json/WheelChairChargingStationF.json',
+			dataType: 'json',
+			success: getJsonChargingStationValue
+		});
+	}
+
+	function getJsonRentalStation() {
+	 	$.ajax({
+			url: '../json/WheelChairRentalStationF.json',
+			dataType: 'json',
+			success: getJsonRentalStationValue
+		});
+	}
+
+	function getJsonChargingStationValue(geojson) {
+
+		for(var i = 0; i < geojson.DATA.length; i++){ //213
+			var data = geojson.DATA[i];
+
+			var cStationNm = data.cot_value_01;
+			var cCordX = data.cot_coord_x;
+			var cCoordY = data.cot_coord_y;
+			var cCoordData = data.cot_coord_data;
+
+			var cAddrNew = data.cot_addr_full_new;
+			var cAddrOld = data.cot_addr_full_old;
+			var cDetailAddr = data.cot_value_03;
+			var cGuNm = data.cot_gu_name;
+			var cDongNm = data.cot_dong_name;
+			var cOprtTime = data.cot_value_04;
+			var cTelNo = data.cot_tel_no;
+
+			var coords = new kakao.maps.LatLng(cCoordY, cCordX);
+
+			if(srchWrd =='') cGuNm ='';
+
+			if(cGuNm == srchWrd || cDongNm == srchWrd) {
+				var marker = new kakao.maps.Marker({
+					map: map,
+					position: coords
+				});
+				map.setCenter(coords);
+
+				var iwContent = [
+					'<div style="width:160px;text-align:center;">',
+					'	<h3 style="height:27px; line-height:27px; background:#006cff; color:#fff; font-size:14px; border-bottom:#a5a5a5 solid 1px;">휠체어 충전소</h3>',
+					'   <p style="height:20px; text-align:left; line-height:20px; text-indent:5px; background:#fff; border-bottom:#ccc solid 1px;text-align:center;">'+cStationNm+'</p></div>'
+				].join('');
+
+				var infowindow = new kakao.maps.InfoWindow({
+				    position : coords,
+				    content : iwContent
+				});
+
+				var markerObj = {
+						"marker" : marker,
+						"cStationNm" : "[충전소] "+cStationNm,
+						"cAddr" : cAddrOld + " (" +cAddrNew+")",
+						//"cAddrDtl" : cDetailAddr,
+						//"cOprtTime" : cOprtTime,
+						"cCoords" : coords,
+						"cInfo" : infowindow,
+						"cTelNo" : cTelNo
+				};
+				markersChrg.push(markerObj);
+			}
+		}
+
+		for (var i=0; i<markersChrg.length; i++) {
+			kakao.maps.event.addListener(markersChrg[i].marker, 'click', getChargingClickHandler(i));
+		}
+	}
+
+	function getChargingClickHandler(seq) {
+		return function(e) {
+
+			$('.result .favorite').removeClass('on');
+
+			var check = checkFavorite(markersChrg[seq].cStationNm);
+
+			if(check) {
+				$('.result .favorite').addClass('on');
+			}
+
+			map.setCenter(markersChrg[seq].cCoords);
+
+ 			for (var i=0 ; i < markersChrg.length; i++){
+ 				markersChrg[i].cInfo.close();
+			}
+
+ 			for (var i=0 ; i < markersRntl.length; i++){
+ 				markersRntl[i].rInfo.close();
+			}
+
+			markersChrg[seq].cInfo.open(map, markersChrg[seq].marker);
+
+			$('.result').addClass('on');
+			$('#sttnNm').html(markersChrg[seq].cStationNm);
+			$('#addr').html(markersChrg[seq].cAddr);
+			//$('#addrDtl').html(markersChrg[seq].cAddrDtl);
+			//$('#OprtTm').html(markersChrg[seq].cOprtTime);
+			$('#telNo').html(markersChrg[seq].cTelNo);
+		}
+	}
+
+
+
+
+	function getJsonRentalStationValue(geojson) {
+
+		for(var i = 0; i < geojson.DATA.length; i++){
+			var data = geojson.DATA[i];
+
+			var rStationNm = data.name_kor;//name_kor , gov_fn
+			var rCordX = data.coord_x;//coord_x
+			var rCoordY = data.coord_y;//coord_y
+			var rAddrNew = data.add_kor_road;//add_kor_road
+			var rGuNm = data.h_kor_gu;//h_kor_gu
+			var rDongNm = data.h_kor_dong;//h_kor_dong
+			var rTelNo = data.tel;//tel
+
+			var coords = new kakao.maps.LatLng(rCoordY, rCordX);
+
+			if(srchWrd =='') rGuNm ='';
+
+			if(rGuNm == srchWrd || rDongNm == srchWrd) {
+
+				var marker = new kakao.maps.Marker({
+					map: map,
+					position: coords
+				});
+
+				map.setCenter(coords);
+
+				var iwContent = [
+					'<div style="width:160px;text-align:center;">',
+					'	<h3 style="height:27px; line-height:27px; background:#006cff; color:#fff; font-size:14px; border-bottom:#a5a5a5 solid 1px;">휠체어 대여소</h3>',
+					'   <p style="height:20px; text-align:left; line-height:20px; text-indent:5px; background:#fff; border-bottom:#ccc solid 1px;text-align:center;">'+rStationNm+'</p></div>'
+				].join('');
+
+				var infowindow = new kakao.maps.InfoWindow({
+				    position : coords,
+				    content : iwContent
+				});
+
+				var markerObj = {
+						"marker" : marker,
+						"rStationNm" : "[대여소] "+rStationNm,
+						"rAddr" : rAddrNew,
+						"rCoords" : coords,
+						"rInfo" : infowindow,
+						"rTelNo" : rTelNo
+				};
+				markersRntl.push(markerObj);
+			}
+		}
+
+		for (var i=0; i<markersRntl.length; i++) {
+			kakao.maps.event.addListener(markersRntl[i].marker, 'click', getRentalClickHandler(i));
+		}
+	}
+
+
+
+	function getRentalClickHandler(seq) {
+		return function(e) {
+
+			$('.result .favorite').removeClass('on');
+
+			var check = checkFavorite(markersRntl[seq].rStationNm);
+
+			if(check) {
+				$('.result .favorite').addClass('on');
+			}
+
+			map.setCenter(markersRntl[seq].rCoords);
+
+ 			for (var i=0 ; i < markersRntl.length; i++){
+ 				markersRntl[i].rInfo.close();
+			}
+
+ 			for (var i=0 ; i < markersChrg.length; i++){
+ 				markersChrg[i].cInfo.close();
+			}
+ 			markersRntl[seq].rInfo.open(map, markersRntl[seq].marker);
+
+			$('.result').addClass('on');
+			$('#sttnNm').html(markersRntl[seq].rStationNm);
+			$('#addr').html(markersRntl[seq].rAddr);
+			$('#telNo').html(markersRntl[seq].rTelNo);
+		}
+	}
+
+	function removeMarker() {
+		for ( var i = 0; i < markersChrg.length; i++ ) {
+			markersChrg[i].marker.setMap(null);
+			markersChrg[i].cInfo.close();
+		}
+
+		for ( var i = 0; i < markersRntl.length; i++ ) {
+			markersRntl[i].marker.setMap(null);
+			markersRntl[i].rInfo.close();
+		}
+		markersChrg = [];
+		markersRntl = [];
+	}
+
+	function callStation() {
+		var telNo = $('#telNo').text();
+	}
+
+	function insertFavorite() {
+		var sttnNm = $('#sttnNm').text();
+		var addr = $('#addr').text();
+		var telNo = $('#telNo').text();
+		var fvrt = false;
+
+		fvrt = checkFavorite(sttnNm);
+
+		if(fvrt) {
+			$('.result .favorite').removeClass('on');
+			fvrt = false;
+		} else {
+			$('.result .favorite').addClass('on');
+			fvrt = true;
+		}
+
+ 		var cookieNm = 'wheelFavorite';
+
+		var sttnInfos = JSON.parse(getCookie(cookieNm) || '[]');
+		var index;
+
+ 		for(var i=0; i<sttnInfos.length; i++) {
+			if(sttnInfos[i].stationName == sttnNm) {
+				index = i;
+				//return false;
+			}
+		}
+
+		if(index !== undefined){
+			sttnInfos.splice(index, 1);
+		}
+
+		sttnInfos.push({stationName : sttnNm, address : addr, telNumber : telNo, favorite : fvrt});
+
+		if(sttnInfos.length > 100){
+			sttnInfos.shift();
+		}
+
+		setCookie(cookieNm, JSON.stringify(sttnInfos),90);
+
+		//alert(getCookie(cookieNm));
+	}
+
+
+	function checkFavorite(sttnNm) {
+ 		var cookieNm = 'wheelFavorite';
+		var sttnInfos = JSON.parse(getCookie(cookieNm) || '[]');
+		var check = false;
+
+		for(var i=0; i<sttnInfos.length; i++) {
+			if(sttnInfos[i].stationName == sttnNm) {
+				check = sttnInfos[i].favorite;
+			}
+		}
+
+		return check;
+	}
+
+	function setCookie(key, value, exdays) {
+		var d = new Date();
+		d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+		var expires = "expires=" + d.toUTCString();
+		document.cookie = key + '=' + value + ';' + expires + ";path=/";
+	}
+
+	function getCookie(key) {
+		var name = key + '=';
+		var decodedCookie = decodeURIComponent(document.cookie);
+		var ca = decodedCookie.split(';');
+		for(var i = 0 ; i < ca.length ; i++){
+			var c = ca[i];
+			while(c.charAt(0) == ' '){
+				c = c.substring(1);
+			}
+			if(c.indexOf(name) == 0){
+				return c.substring(name.length, c.length);
+			}
+		}
+		return "";
+	}
+
+</script>
