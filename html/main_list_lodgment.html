@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>메인</title>
+<meta name="Author" content="" />
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<link rel="stylesheet" href="../css/style.css">
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+</head>
+
+<body>
+<div id="wrap">
+    <div class="container">
+        <div id="modal" class="modal">
+            <div class="modalBg"></div>
+            <ol class="center">
+                <li>전체<input type="radio" id="all"><label for="all"></label></li>
+                <li>서울<input type="radio" id="Seoul"><label for="Seoul"></label></li>
+                <li>인천<input type="radio" id="Incheon"><label for="Incheon"></label></li>
+                <li>대구<input type="radio" id="Daegu"><label for="Daegu"></label></li>
+                <li>광주<input type="radio" id="Gwangju"><label for="Gwangju"></label></li>
+                <li>부산<input type="radio" id="Busan"><label for="Busan"></label></li>
+                <li>울산<input type="radio" id="Ulsan"><label for="Ulsan"></label></li>
+                <li>세종<input type="radio" id="Sejong"><label for="Sejong"></label></li>
+                <li>경기<input type="radio" id="Gyeonggi"><label for="Gyeonggi"></label></li>
+                <li>강원<input type="radio" id="Gangwon"><label for="Gangwon"></label></li>
+                <li>충북<input type="radio" id="Chungbuk"><label for="Chungbuk"></label></li>
+                <li>충남<input type="radio" id="Chungnam"><label for="Chungnam"></label></li>
+                <li>경북<input type="radio" id="Gyeongbuk"><label for="Gyeongbuk"></label></li>
+                <li>경남<input type="radio" id="Gyeongnam"><label for="Gyeongnam"></label></li>
+                <li>전북<input type="radio" id="Jeonbuk"><label for="Jeonbuk"></label></li>
+                <li>전남<input type="radio" id="Jeonnam"><label for="Jeonnam"></label></li>
+                <li>제주<input type="radio" id="Jeju"><label for="Jeju"></label></li>
+            </ol>
+        </div>
+        <div class="back">
+            <a href="main.html"><img src="../images/icon/back.svg" alt=""></a>
+        </div>
+        <div id="viewBox">
+            <div class="filter_result">
+                <div class="result_top">
+                    <h2>전체</h2>
+                    <p>검색 결과 : 총 <span class="all"></span>건</p>
+                </div>
+            </div>
+            <div class="filterBox list">
+                <div class="filter">
+                    <div class="selectBox">
+                        <select name="area" id="">
+                            <option value="지역을 선택하세요" selected>지역을 선택하세요</option>
+                        </select>                    
+                    </div>
+                </div>
+                <div class="filterTab">
+                    <ul>
+                        <li><a href="main_list.html">전체</a></li>
+                        <li><a href="main_list_tourism.html">관광지</a></li>
+                        <li><a class="on" href="main_list_lodgment.html">숙박</a></li>
+                        <li><a href="main_list_restaurant.html">음식점</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="viewBox_in">
+                <div class="recommend_list">
+                    <!-- <ul class="detail_list">
+                       <li>
+                            <a href="main_list_detail.html">
+                                <div class="img">
+                                    <img class="sumbnail" src="../images/01.jpg" alt="">
+                                </div>
+                                <div class="right">
+                                    <p class="tit">경복궁</p>
+                                    <span class="address">서울특별시 종로구 세종로 사직로 161</span>
+                                    <ul class="num_views">
+                                        <li><img src="../images/icon/views.svg" alt=""><span>10,204</span></li>
+                                        <li><img src="../images/icon/goods.svg" alt=""><span>154</span></li>
+                                        <li><img src="../images/icon/share_s.svg" alt=""><span>25</span></li>
+                                    </ul>
+                                </div>
+                            </a>
+                            <button class="hidden">
+                                <img class="right" src="../images/icon/hide.svg" alt="">
+                                <ul class="hidden_box">
+                                    <li class="">
+                                        <span class="star"></span>
+                                        <span>즐겨찾기</span>
+                                    </li>
+                                    <li>
+                                        <img src="../images/icon/share.svg" alt="">
+                                        <span>공유하기</span>
+                                    </li>
+                                </ul>
+                            </button>
+                        </li>
+                    </ul>END) detail_list -->
+                </div><!--END) commend_list -->
+                    <div class="pagination">
+                        <ul>
+                            <li class="prev"><a href="#"><img src="../images/icon/start_arr.svg" alt=""></a></li>
+                            <li class="prev"><a href="#"><img src="../images/icon/prev_arr.svg" alt=""></a></li>
+                            <li><a href="#">1</a></li>
+                            <li class="on"><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#">6</a></li>
+                            <li><a href="#">7</a></li>
+                            <li><a href="#">8</a></li>
+                            <li><a href="#">9</a></li>
+                            <li><a href="#">10</a></li>
+                            <li><a href="#"><img src="../images/icon/next_arr.svg" alt=""></a></li>
+                            <li><a href="#"><img src="../images/icon/end_arr.svg" alt=""></a></li>
+                        </ul>
+                    </div>
+            </div>
+        </div><!--END) viewBox -->
+    </div>
+    <div id="mainTap">
+        <a href="main.html" class="home active">
+            <div class="hover">
+                <div class="icon">홈</div>
+                <span>홈</span>
+            </div>
+        </a>
+        <a href="map.html" class="map">
+            <div class="hover">
+                <div class="icon">충전</div>
+                <span>충전·대여</span>
+            </div>
+        </a>
+        <a href="favorite.html" class="favorite">
+            <div class="hover">
+                <div class="icon">즐겨찾기</div>
+                <span>즐겨찾기</span>
+            </div>
+        </a>
+    </div>
+</div>
+<script>
+	$(document).ready(function() {
+		getJsonTourism();
+	});
+
+	function getJsonTourism() {
+		$.ajax({
+			url : '../json/lodgment.json',
+			dataType : 'json',
+			success : getJsonTourismValue
+		});
+	}
+
+	/* "DESCRIPTION" : {"SEQ":"고유번호","IMAGES":"시설 이미지(썸네일)","ST12":"휠체어 대여 여부","ST9":"시각장애인 편의서비스 여부","GU":"담당구",
+	"ST11":"안내 서비스 여부","ST10":"청각장애인 편의서비스 여부","SISULNAME":"시설명","TEL":"연락처","ST2":"장애인 전용 주차구역 여부",
+	"ST1":"주출입구 접근로 여부","HIT":"추천수","ST4":"장애인용 승강기 여부","ST3":"주출입구 높이차이 제거 여부","ST6":"장애인용 객실 이용가능 여부",
+	"ADDR":"주소","ST5":"장애인 화장실 여부","HOMEPAGE":"홈페이지","ST8":"장애인 매표소 여부","ST7":"장애인용 관람석 이용가능 여부"},*/
+
+	function getJsonTourismValue(geojson) {
+		var cnt = 0;
+		for (var i = 0; i < geojson.DATA.length; i++) { //79
+			var data = geojson.DATA[i];
+			var content = [
+					'<ul class="detail_list">',
+					'<li><a href="main_list_detail.html"><div class="img">',
+					'<img class="sumbnail" src="'+data.homepage+'"alt="">',
+					'</div><div class="right"><p class="tit">' + data.sisulname
+							+ '</p>',
+					'<span class="address">' + data.addr + '</span>',
+					'<ul class="num_views"><li><img src="../images/icon/goods.svg" alt=""><span>'
+							+ data.hit + '</span></li>',
+					'</ul></div></a><button class="hidden"><img class="right" src="../images/icon/hide.svg" alt="">',
+					'<ul class="hidden_box"><li class=""><span class="star"></span><span>즐겨찾기</span>',
+					'</li></ul></button></li></ul>' ].join('');
+			$(".recommend_list").append(content);
+			cnt++;
+		}
+		$('.all').html(cnt);
+	}
+</script>
+</body>
+</html>

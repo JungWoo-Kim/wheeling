@@ -220,19 +220,19 @@
     </div>
 
     <div id="mainTap">
-        <a href="main" class="home">
+        <a href="main.html" class="home">
             <div class="hover">
                 <div class="icon">홈</div>
                 <span>홈</span>
             </div>
         </a>
-        <a href="map" class="map">
+        <a href="map.html" class="map">
             <div class="hover">
                 <div class="icon">충전</div>
                 <span>충전·대여</span>
             </div>
         </a>
-        <a href="favorite" class="favorite active">
+        <a href="favorite.html" class="favorite active">
             <div class="hover">
                 <div class="icon">즐겨찾기</div>
                 <span>즐겨찾기</span>
@@ -287,7 +287,7 @@
 			
 		    $("#"+tab_id).addClass('current');
 		})
-		
+		alert(getCookieWheelFavorite());
 		getCookieWheelFavorite();	
 		
 	}); 

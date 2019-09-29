@@ -22,23 +22,23 @@
         <div id="modal" class="modal">
             <div class="modalBg"></div>
             <ol class="center">
-                <li>전체<input type="radio" id="all"><label for="all"></label></li>
-                <li>서울<input type="radio" id="Seoul"><label for="Seoul"></label></li>
-                <li>인천<input type="radio" id="Incheon"><label for="Incheon"></label></li>
-                <li>대구<input type="radio" id="Daegu"><label for="Daegu"></label></li>
-                <li>광주<input type="radio" id="Gwangju"><label for="Gwangju"></label></li>
-                <li>부산<input type="radio" id="Busan"><label for="Busan"></label></li>
-                <li>울산<input type="radio" id="Ulsan"><label for="Ulsan"></label></li>
-                <li>세종<input type="radio" id="Sejong"><label for="Sejong"></label></li>
-                <li>경기<input type="radio" id="Gyeonggi"><label for="Gyeonggi"></label></li>
-                <li>강원<input type="radio" id="Gangwon"><label for="Gangwon"></label></li>
-                <li>충북<input type="radio" id="Chungbuk"><label for="Chungbuk"></label></li>
-                <li>충남<input type="radio" id="Chungnam"><label for="Chungnam"></label></li>
-                <li>경북<input type="radio" id="Gyeongbuk"><label for="Gyeongbuk"></label></li>
-                <li>경남<input type="radio" id="Gyeongnam"><label for="Gyeongnam"></label></li>
-                <li>전북<input type="radio" id="Jeonbuk"><label for="Jeonbuk"></label></li>
-                <li>전남<input type="radio" id="Jeonnam"><label for="Jeonnam"></label></li>
-                <li>제주<input type="radio" id="Jeju"><label for="Jeju"></label></li>
+                <li>전체<input type="radio" name="areaFilter" id="all" class="checkFlag"><label for="all"></label></li>
+                <li>서울<input type="radio" name="areaFilter" id="Seoul" class="checkFlag"><label for="Seoul"></label></li>
+                <li>인천<input type="radio" name="areaFilter" id="Incheon"><label for="Incheon"></label></li>
+                <li>대구<input type="radio" name="areaFilter" id="Daegu"><label for="Daegu"></label></li>
+                <li>광주<input type="radio" name="areaFilter" id="Gwangju"><label for="Gwangju"></label></li>
+                <li>부산<input type="radio" name="areaFilter" id="Busan"><label for="Busan"></label></li>
+                <li>울산<input type="radio" name="areaFilter" id="Ulsan"><label for="Ulsan"></label></li>
+                <li>세종<input type="radio" name="areaFilter" id="Sejong"><label for="Sejong"></label></li>
+                <li>경기<input type="radio" name="areaFilter" id="Gyeonggi"><label for="Gyeonggi"></label></li>
+                <li>강원<input type="radio" name="areaFilter" id="Gangwon"><label for="Gangwon"></label></li>
+                <li>충북<input type="radio" name="areaFilter" id="Chungbuk"><label for="Chungbuk"></label></li>
+                <li>충남<input type="radio" name="areaFilter" id="Chungnam"><label for="Chungnam"></label></li>
+                <li>경북<input type="radio" name="areaFilter" id="Gyeongbuk"><label for="Gyeongbuk"></label></li>
+                <li>경남<input type="radio" name="areaFilter" id="Gyeongnam"><label for="Gyeongnam"></label></li>
+                <li>전북<input type="radio" name="areaFilter" id="Jeonbuk"><label for="Jeonbuk"></label></li>
+                <li>전남<input type="radio" name="areaFilter" id="Jeonnam"><label for="Jeonnam"></label></li>
+                <li>제주<input type="radio" name="areaFilter" id="Jeju"><label for="Jeju"></label></li>
             </ol>
         </div>
         <div class="slider">
@@ -54,17 +54,16 @@
             <div class="filterBox">
                 <div class="filter">
                     <div class="selectBox">
-                        <select name="area" id="">
-                            <option value="" selected>지역을 선택하세요</option>
+                        <select name="area" id="callModal">
                         </select>                    
                     </div>
                 </div>
                 <div class="filterTab">
                     <ul>
-                        <li><a href="#">전체</a></li>
-                        <li><a href="#">관광지</a></li>
-                        <li><a href="#">숙박</a></li>
-                        <li><a href="#">음식점</a></li>
+                        <li><a href="main_list.html">전체</a></li>
+                        <li><a href="main_list_tourism.html">관광지</a></li>
+                        <li><a href="main_list_lodgment.html">숙박</a></li>
+                        <li><a href="main_list_restaurant.html">음식점</a></li>
                     </ul>
                 </div>
             </div>
@@ -216,5 +215,34 @@
         </a>
     </div>
 </div>
+<script>
+
+	// Get the modal
+	var modal = document.getElementById('modal');
+
+	// Get the button that opens the modal
+	var btn = document.getElementById("callModal");
+
+	// Get the <span> element that closes the modal
+	var span = document.getElementsByClassName("checkFlag");
+	
+	// When the user clicks on the button, open the modal 
+	btn.onclick = function() {
+		modal.style.display = "block";
+	}
+
+	// When the user clicks on <span> (x), close the modal
+	span.onclick = function() {
+		modal.style.display = "none";
+	}
+
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+		if (event.target == modal) {
+			modal.style.display = "none";
+		}
+	}
+	
+</script>
 </body>
 </html>

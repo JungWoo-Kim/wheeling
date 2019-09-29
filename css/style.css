@@ -68,7 +68,7 @@ div.container::-webkit-scrollbar {display: none;}
 
 /* 슬라이드배너 */
 .slider {position: relative; height: 54rem; overflow: hidden; background-size: contain;}
-.slider .img img {width: 100%; position: absolute; top:-30%; height:300px;}
+.slider .img img {width: 100%;}
 .slider .img .banner_word {position: absolute; top: 50%; left: 50%; margin-left: -30rem; margin-top: -10rem; font-size: 7rem; text-align: center;}
 .slider .img .banner_word b {display: block;}
 
