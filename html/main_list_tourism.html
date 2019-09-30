@@ -10,128 +10,7 @@
 <!-- <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script> -->
 <script src="../js/jquery-3.4.1.min.js"></script>
 <link rel="stylesheet" href="../css/style.css">
-<script>
-	$(document).ready(function() {
-		getJsonTourism();
-	});
 
-	function getJsonTourism() {
-		$.ajax({
-			url : '../json/tourism.json',
-			dataType : 'json',
-			success : getJsonTourismValue
-		});
-	}
-
-	/* "DESCRIPTION" : {"SEQ":"고유번호","IMAGES":"시설 이미지(썸네일)","ST12":"휠체어 대여 여부","ST9":"시각장애인 편의서비스 여부","GU":"담당구",
-	"ST11":"안내 서비스 여부","ST10":"청각장애인 편의서비스 여부","SISULNAME":"시설명","TEL":"연락처","ST2":"장애인 전용 주차구역 여부",
-	"ST1":"주출입구 접근로 여부","HIT":"추천수","ST4":"장애인용 승강기 여부","ST3":"주출입구 높이차이 제거 여부","ST6":"장애인용 객실 이용가능 여부",
-	"ADDR":"주소","ST5":"장애인 화장실 여부","HOMEPAGE":"홈페이지","ST8":"장애인 매표소 여부","ST7":"장애인용 관람석 이용가능 여부"},*/
-
-	var tourismTotalCnt = 0;
-	
-	function getJsonTourismValue(geojson) {
-		
-		for (var i = 0; i < geojson.DATA.length; i++) { //79
-			var data = geojson.DATA[i];
-			var content = [
-					'<ul class="detail_list">',
-					'<li><a href="main_list_detail.html"><div class="img">',
-					'<img class="sumbnail" src="'+(data.images != null ? data.images : "http://wis.seoul.go.kr/rest/file/thumbnail/9ifmzu0qgiqp0i99vy63sni68d77qpov/1")+'"alt="">',
-					'</div><div class="right"><p class="tit">' + data.sisulname
-							+ '</p>',
-					'<span class="address">' + data.addr + '</span>',
-					'<span class="tel_no">T.' + data.tel + '</span>',
-					'</div></a><button class="hidden"><img class="right" src="../images/icon/hide.svg" alt="">',
-					'<ul class="hidden_box"><li class=""><span class="star"></span><span>즐겨찾기</span>',
-					'</li></ul></button></li></ul>' ].join('');
-			$(".recommend_list").append(content);
-			tourismTotalCnt++;
-		}
-		
-		$('.all').html(tourismTotalCnt);
-	}
-	
-
-    var totalData = tourismTotalCnt;    // 총 데이터 수
-    var dataPerPage = 10;    // 한 페이지에 나타낼 데이터 수
-    var pageCount = 10;        // 한 화면에 나타낼 페이지 수
-    
-    function paging(totalData, dataPerPage, pageCount, currentPage){
-        
-        console.log("currentPage : " + currentPage);
-        
-        var totalPage = Math.ceil(totalData/dataPerPage);    // 총 페이지 수
-        var pageGroup = Math.ceil(currentPage/pageCount);    // 페이지 그룹
-        
-        console.log("pageGroup : " + pageGroup);
-        
-        var last = pageGroup * pageCount;    // 화면에 보여질 마지막 페이지 번호
-        if(last > totalPage)
-            last = totalPage;
-        var first = last - (pageCount-1);    // 화면에 보여질 첫번째 페이지 번호
-        var next = last+1;
-        var prev = first-1;
-        
-        console.log("last : " + last);
-        console.log("first : " + first);
-        console.log("next : " + next);
-        console.log("prev : " + prev);
- 
-        var $pingingView = $("#paging");
-        
-        var html = "";
-        
-        if(prev > 0)
-            html += "<li class='prev'><a href='#''><img src=''../images/icon/start_arr.svg' alt=''></a></li>";
-        
-        for(var i=first; i <= last; i++){
-            html += "<li><a href='#' id="+ i +">"+ i +"</a></li>";
-        }
-            
-        
-        if(last < totalPage)
-            html += "<a href=# id='next'>></a>";
-        
-        $("#paging").html(html);    // 페이지 목록 생성
-        $("#paging a").css("color", "black");
-        $("#paging a#" + currentPage).css({"text-decoration":"none", 
-                                           "color":"red", 
-                                           "font-weight":"bold"});    // 현재 페이지 표시
-                                           
-        $("#paging a").click(function(){
-            
-            var $item = $(this);
-            var $id = $item.attr("id");
-            var selectedPage = $item.text();
-            
-            if($id == "next")    selectedPage = next;
-            if($id == "prev")    selectedPage = prev;
-            
-            paging(totalData, dataPerPage, pageCount, selectedPage);
-        });
-                                           
-    }
-    
-    $("document").ready(function(){        
-        paging(totalData, dataPerPage, pageCount, 1);
-    });	
-	
-/* 	$(document).ready(function() {
-	    var offset = $('.recommend_list ul').length;
-	 
-	    $('.recommend_list').endlessScroll({
-	        fireOnce: false,
-	        fireDelay: false,
-	        loader: '',
-	        insertAfter: '.recommend_list ul:last',
-	        content: function(i) {
-	            return '<li>' + (i + offset) + '</li>';
-	        }
-	    });
-	});
- */
-</script>
 </head>
 
 <body>
@@ -140,23 +19,34 @@
         <div id="modal" class="modal">
             <div class="modalBg"></div>
             <ol class="center">
-                <li>전체<input type="radio" id="all"><label for="all"></label></li>
-                <li>서울<input type="radio" id="Seoul"><label for="Seoul"></label></li>
-                <li>인천<input type="radio" id="Incheon"><label for="Incheon"></label></li>
-                <li>대구<input type="radio" id="Daegu"><label for="Daegu"></label></li>
-                <li>광주<input type="radio" id="Gwangju"><label for="Gwangju"></label></li>
-                <li>부산<input type="radio" id="Busan"><label for="Busan"></label></li>
-                <li>울산<input type="radio" id="Ulsan"><label for="Ulsan"></label></li>
-                <li>세종<input type="radio" id="Sejong"><label for="Sejong"></label></li>
-                <li>경기<input type="radio" id="Gyeonggi"><label for="Gyeonggi"></label></li>
-                <li>강원<input type="radio" id="Gangwon"><label for="Gangwon"></label></li>
-                <li>충북<input type="radio" id="Chungbuk"><label for="Chungbuk"></label></li>
-                <li>충남<input type="radio" id="Chungnam"><label for="Chungnam"></label></li>
-                <li>경북<input type="radio" id="Gyeongbuk"><label for="Gyeongbuk"></label></li>
-                <li>경남<input type="radio" id="Gyeongnam"><label for="Gyeongnam"></label></li>
-                <li>전북<input type="radio" id="Jeonbuk"><label for="Jeonbuk"></label></li>
-                <li>전남<input type="radio" id="Jeonnam"><label for="Jeonnam"></label></li>
-                <li>제주<input type="radio" id="Jeju"><label for="Jeju"></label></li>
+               <form>
+                <li>전체<input type="radio" name="areaFilter" id="all" checked><label for="all"></label></li>
+                <li>강남구<input type="radio" name="areaFilter" id="gangNam"><label for="강남구"></label></li>
+                <li>강동구<input type="radio" name="areaFilter" id="gangDong"><label for="강동구"></label></li>
+                <li>강북구<input type="radio" name="areaFilter" id="gangBuk"><label for="강북구"></label></li>
+                <li>강서구<input type="radio" name="areaFilter" id="gangSeo"><label for="강서구"></label></li>
+                <li>관악구<input type="radio" name="areaFilter" id="gwanAk"><label for="관악구"></label></li>
+                <li>광진구<input type="radio" name="areaFilter" id="gwanGin"><label for="광진구"></label></li>
+                <li>구로구<input type="radio" name="areaFilter" id="guRo"><label for="구로구"></label></li>
+                <li>금천구<input type="radio" name="areaFilter" id="geumChun"><label for="금천구"></label></li>
+                <li>노원구<input type="radio" name="areaFilter" id="noWon"><label for="노원구"></label></li>
+                <li>도봉구<input type="radio" name="areaFilter" id="doBong"><label for="도봉구"></label></li>
+                <li>동대문구<input type="radio" name="areaFilter" id="dongDeamun"><label for="동대문구"></label></li>
+                <li>동작구<input type="radio" name="areaFilter" id="dongJak"><label for="동작구"></label></li>
+                <li>마포구<input type="radio" name="areaFilter" id="maPo"><label for="마포구"></label></li>
+                <li>서대문구<input type="radio" name="areaFilter" id="seoDeamun"><label for="서대문구"></label></li>
+                <li>서초구<input type="radio" name="areaFilter" id="seoCho"><label for="서초구"></label></li>
+                <li>성동구<input type="radio" name="areaFilter" id="sungDong"><label for="성동구"></label></li>
+                <li>성북구<input type="radio" name="areaFilter" id="sungBuk"><label for="성북구"></label></li>
+                <li>송파구<input type="radio" name="areaFilter" id="songPa"><label for="송파구"></label></li>
+                <li>양천구<input type="radio" name="areaFilter" id="yangChun"><label for="양천구"></label></li>
+                <li>영등포구<input type="radio" name="areaFilter" id="yungDeongPo"><label for="영등포구"></label></li>
+                <li>용산구<input type="radio" name="areaFilter" id="yongSan"><label for="용산구"></label></li>
+                <li>은평구<input type="radio" name="areaFilter" id="eanPyeong"><label for="은평구"></label></li>
+                <li>종로구<input type="radio" name="areaFilter" id="jongRo"><label for="종로구"></label></li>
+                <li>중구<input type="radio" name="areaFilter" id="jungGu"><label for="중구"></label></li>
+                <li>중랑구<input type="radio" name="areaFilter" id="jungRang"><label for="중랑구"></label></li>
+           </form>
             </ol>
         </div>
         <div class="back">
@@ -172,9 +62,7 @@
             <div class="filterBox list">
                 <div class="filter">
                     <div class="selectBox">
-                        <select name="area" id="">
-                            <option value="지역을 선택하세요" selected>지역을 선택하세요</option>
-                        </select>                    
+                      	  <button id="callModal">지역을 선택하세요</button>
                     </div>
                 </div>
                 <div class="filterTab">
@@ -187,7 +75,7 @@
                 </div>
             </div>
             <div class="viewBox_in">
-                <div class="recommend_list">
+                <div class="recommend_list" id="recommend_list_tourism">
                     <!-- <ul class="detail_list">
                        <li>
                             <a href="main_list_detail.html">
@@ -263,6 +151,289 @@
     </div>
 </div>
 
+<script>
 
+
+	// Get the modal
+	var modal = document.getElementById('modal');
+	
+	// Get the button that opens the modal
+	var btn = document.getElementById("callModal");
+	
+	// Get the <span> element that closes the modal
+	var close = document.getElementsByName("areaFilter");
+	
+	// When the user clicks on the button, open the modal 
+	btn.onclick = function() {
+		modal.style.display = "block";
+	}
+	
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+		if (event.target == modal) {
+			modal.style.display = "none";
+		}
+	}
+	
+	$('input[name="areaFilter"]').change(function() {
+	    // 모든 radio를 순회한다.
+		modal.style.display = "none";
+	    $('input[name="areaFilter"]').each(function() {
+	        var value = $(this).val();              // value
+	        var checked = $(this).prop('checked');  // jQuery 1.6 이상 (jQuery 1.6 미만에는 prop()가 없음, checked, selected, disabled는 꼭 prop()를 써야함)
+	        var $label = $(this).next();
+	    });
+	});
+
+	var star = document.getElementsByClassName(".hidden_box li");
+	
+	function openBox(){
+		$('.hidden_box').addClass('on');
+	}
+
+	$(document).ready(function() {
+		getJsonTourism();
+		
+	});
+	
+	
+
+	
+	
+	function getJsonTourism() {
+		$.ajax({
+			url : '../json/tourism.json',
+			dataType : 'json',
+			success : getJsonTourismValue
+		});
+	}
+
+	/* "DESCRIPTION" : {"SEQ":"고유번호","IMAGES":"시설 이미지(썸네일)","ST12":"휠체어 대여 여부","ST9":"시각장애인 편의서비스 여부","GU":"담당구",
+	"ST11":"안내 서비스 여부","ST10":"청각장애인 편의서비스 여부","SISULNAME":"시설명","TEL":"연락처","ST2":"장애인 전용 주차구역 여부",
+	"ST1":"주출입구 접근로 여부","HIT":"추천수","ST4":"장애인용 승강기 여부","ST3":"주출입구 높이차이 제거 여부","ST6":"장애인용 객실 이용가능 여부",
+	"ADDR":"주소","ST5":"장애인 화장실 여부","HOMEPAGE":"홈페이지","ST8":"장애인 매표소 여부","ST7":"장애인용 관람석 이용가능 여부"},*/
+
+	var tourismTotalCnt = 0;
+	
+	function getJsonTourismValue(geojson) {
+		
+		for (var i = 0; i < geojson.DATA.length; i++) { //79
+			var data = geojson.DATA[i];
+			var content = [
+					'<ul class="detail_list" id="ul_list_'+i+'"><li id="li_list_'+i+'">',
+					'<a href="main_list_detail.html"><div class="img">',
+					'<img class="sumbnail" src="'+(data.images != null ? data.images : "http://wis.seoul.go.kr/rest/file/thumbnail/9ifmzu0qgiqp0i99vy63sni68d77qpov/1")+'"alt="">',
+					'</div><div class="right"><p class="tit">' + data.sisulname
+							+ '</p>',
+					'<span class="address">' + data.addr + '</span>',
+					'<span class="tel_no">T.'+(data.tel != null ? data.tel : "번호가 없습니다.")+'</span>',
+					'</div>',
+					'</a>',
+					'<button class="hidden" onclick="selectMenu('+i+');">',
+	                    '<img class="right" src="../images/icon/hide.svg" alt="">',
+	                    '<ul class="hidden_box ">',
+	                        '<li class="on"><span class="star"></span><span class="active" onclick="insertFavorite();">즐겨찾기</span></li>',
+	                        /* '<li class="on"><span class="pin"></span><span class="active">상단 고정 해제</span></li>', */
+	                        /* '<li><img src="../images/icon/share.svg" alt=""><span>공유하기</span></li>', */
+	                    '</ul>',
+	                '</button>',
+	            '</li></ul>'].join('');
+			$('#recommend_list_tourism').append(content);
+			tourismTotalCnt++;
+		}
+		
+		$('.all').html(tourismTotalCnt);
+	}
+	
+	function selectMenu(id) {
+		$('#recommend_list_tourism .detail_list li .hidden .hidden_box').removeClass('on');
+		if($('#recommend_list_tourism .detail_list #li_list_'+id+' .hidden .hidden_box').hasClass('on')) {
+			$('#recommend_list_tourism .detail_list #li_list_'+id+' .hidden .hidden_box').removeClass('on');
+		} else {
+			$('#recommend_list_tourism .detail_list #li_list_'+id+' .hidden .hidden_box').addClass('on');
+		} 
+	}
+	
+	function offFavorite(nm, addr, tel) {
+		var sttnNm = nm;	
+		var addr = addr;
+		var telNo = tel;
+		var fvrt = false;
+
+		var cookieNm = 'wheelFavorite';
+
+		var sttnInfos = JSON.parse(getCookie(cookieNm) || '[]');
+		var index;
+		
+		for(var i=0; i<sttnInfos.length; i++) {
+			if(sttnInfos[i].stationName == sttnNm) {
+				index = i;
+			}
+		} 
+		
+		if(index !== undefined){
+			sttnInfos.splice(index, 1);
+		}
+		
+		sttnInfos.push({stationName : sttnNm, address : addr, telNumber : telNo, favorite : fvrt});
+		
+		if(sttnInfos.length > 100){
+			sttnInfos.shift();
+		}
+		
+		setCookie(cookieNm, JSON.stringify(sttnInfos),90)
+		
+		$('#recommend_list .detail_list li .hidden .hidden_box').removeClass('on');
+
+		getCookieWheelFavorite();
+	}
+	
+
+    var totalData = tourismTotalCnt;    // 총 데이터 수
+    var dataPerPage = 10;    // 한 페이지에 나타낼 데이터 수
+    var pageCount = 10;        // 한 화면에 나타낼 페이지 수
+    
+    function paging(totalData, dataPerPage, pageCount, currentPage){
+        
+        console.log("currentPage : " + currentPage);
+        
+        var totalPage = Math.ceil(totalData/dataPerPage);    // 총 페이지 수
+        var pageGroup = Math.ceil(currentPage/pageCount);    // 페이지 그룹
+        
+        console.log("pageGroup : " + pageGroup);
+        
+        var last = pageGroup * pageCount;    // 화면에 보여질 마지막 페이지 번호
+        if(last > totalPage)
+            last = totalPage;
+        var first = last - (pageCount-1);    // 화면에 보여질 첫번째 페이지 번호
+        var next = last+1;
+        var prev = first-1;
+        
+        console.log("last : " + last);
+        console.log("first : " + first);
+        console.log("next : " + next);
+        console.log("prev : " + prev);
+ 
+        var $pingingView = $("#paging");
+        
+        var html = "";
+        
+        if(prev > 0)
+            html += "<li class='prev'><a href='#''><img src=''../images/icon/start_arr.svg' alt=''></a></li>";
+        
+        for(var i=first; i <= last; i++){
+            html += "<li><a href='#' id="+ i +">"+ i +"</a></li>";
+        }
+            
+        
+        if(last < totalPage)
+            html += "<a href=# id='next'>></a>";
+        
+        $("#paging").html(html);    // 페이지 목록 생성
+        $("#paging a").css("color", "black");
+        $("#paging a#" + currentPage).css({"text-decoration":"none", 
+                                           "color":"red", 
+                                           "font-weight":"bold"});    // 현재 페이지 표시
+                                           
+        $("#paging a").click(function(){
+            
+            var $item = $(this);
+            var $id = $item.attr("id");
+            var selectedPage = $item.text();
+            
+            if($id == "next")    selectedPage = next;
+            if($id == "prev")    selectedPage = prev;
+            
+            paging(totalData, dataPerPage, pageCount, selectedPage);
+        });
+                                           
+    }
+    
+    $("document").ready(function(){        
+        paging(totalData, dataPerPage, pageCount, 1);
+    });	
+	
+
+	function insertFavorite() {
+		var sumbnail = $('.sumbnail').prop('src');
+		var tit = $('.tit').text();
+		var addr = $('.address').text();
+		var telNo = $('.tel_no').text();
+		var fvrt = false;
+
+		fvrt = checkFavorite(tit);
+
+		if(fvrt) {
+			$('.hidden_box li').removeClass('on');
+			fvrt = false;
+		} else {
+			$('.hidden_box li').addClass('on');
+			fvrt = true;
+		}
+
+ 		var cookieNm = 'tourismFavorite';
+
+		var tourismInfos = JSON.parse(getCookie(cookieNm) || '[]');
+		var index;
+
+ 		for(var i=0; i<tourismInfos.length; i++) {
+			if(tourismInfos[i].stationName == sttnNm) {
+				index = i;
+				//return false;
+			}
+		}
+
+		if(index !== undefined){
+			tourismInfos.splice(index, 1);
+		}
+
+		tourismInfos.push({sumbnail : sumbnail, title : tit, address : addr, telNumber : telNo, favorite : fvrt});
+
+		if(tourismInfos.length > 100){
+			tourismInfos.shift();
+		}
+
+		setCookie(cookieNm, JSON.stringify(tourismInfos),90);
+
+		alert(getCookie(cookieNm));
+	}
+
+	function checkFavorite(sttnNm) {
+ 		var cookieNm = 'tourismFavorite';
+		var tourismInfos = JSON.parse(getCookie(cookieNm) || '[]');
+		var check = false;
+
+		for(var i=0; i<tourismInfos.length; i++) {
+			if(tourismInfos[i].stationName == sttnNm) {
+				check = tourismInfos[i].favorite;
+			}
+		}
+
+		return check;
+	}
+
+	function setCookie(key, value, exdays) {
+		var d = new Date();
+		d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+		var expires = "expires=" + d.toUTCString();
+		document.cookie = key + '=' + value + ';' + expires + ";path=/";
+	}
+
+	function getCookie(key) {
+		var name = key + '=';
+		var decodedCookie = decodeURIComponent(document.cookie);
+		var ca = decodedCookie.split(';');
+		for(var i = 0 ; i < ca.length ; i++){
+			var c = ca[i];
+			while(c.charAt(0) == ' '){
+				c = c.substring(1);
+			}
+			if(c.indexOf(name) == 0){
+				return c.substring(name.length, c.length);
+			}
+		}
+		return "";
+	}
+</script>
 </body>
 </html>

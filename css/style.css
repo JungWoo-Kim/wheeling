@@ -48,14 +48,14 @@ div.container::-webkit-scrollbar {display: none;}
 .orange {color: #ff7200;}
 
 /* main tap */
-#mainTap {position: fixed; bottom: 0; width: 100%; height: 17rem; line-height: 17rem; text-align: center; overflow: hidden; border-top: 0.1rem solid #a9a9a9; background-color: #fff; z-index: 100;}
+#mainTap {position: fixed; bottom: 0; width: 100%; height:21rem; line-height:21rem; text-align: center; overflow: hidden; border-top: 0.1rem solid #a9a9a9; background-color: #fff; z-index: 100;}
 #mainTap a {position: relative; display: inline-block; vertical-align: middle; width: 32%; line-height: 3rem;}
 #mainTap a .hover { width: 100%; }
 #mainTap a .hover .icon {margin: 0 auto; text-indent: -9999px; margin-bottom: 1.7rem;}
 #mainTap a .hover span {font-size: 3.6rem;}
-#mainTap .home .icon {width: 8.3rem; height: 7.3rem; background: url('../images/icon/home_off.svg') no-repeat; background-size: contain;}
-#mainTap .map .icon {width: 8.4rem; height: 7.4rem; background: url('../images/icon/wheel_off.svg') no-repeat; background-size: contain;}
-#mainTap .favorite .icon {width: 7.3rem; height: 7rem; background: url('../images/icon/favorite_off.svg') no-repeat; background-size: contain;}
+#mainTap .home .icon {width: 10.3rem; height: 9.3rem; background: url('../images/icon/home_off.svg') no-repeat; background-size: contain;}
+#mainTap .map .icon {width: 10.4rem; height: 9.4rem; background: url('../images/icon/wheel_off.svg') no-repeat; background-size: contain;}
+#mainTap .favorite .icon {width: 9.3rem; height: 9rem; background: url('../images/icon/favorite_off.svg') no-repeat; background-size: contain;}
 /*#mainTap a:hover .hover {position: absolute; top: -181px; background-color: #e0eff5; vertical-align: middle;  height: 363px; line-height: 262px; border-radius: 500px;}*/
 #mainTap a:hover span,
 #mainTap a.active span {color: #006cff; font-weight: bold;}
@@ -90,14 +90,12 @@ div.container::-webkit-scrollbar {display: none;}
 .grid li a .img .sumbnail {max-width: 100%; min-height: 100%;}
 .grid li a .tit {font-size: 4.2rem; font-weight: bold; margin-bottom: 1.8rem; }
 .grid li a .address {display: block; font-size: 2.8rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
-.grid li a .tel_no {display: block; font-size: 2.8rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
 
 /* 필터 */
 .filterBox {width: 92%; margin: -7.5rem auto; margin-bottom: 8rem;}
 .filterBox .filter {margin-bottom: 6rem; }
 .filterBox .filter .selectBox {}
-.filterBox .filter select {width: 100%; font-size: 4.8rem; padding: 5.2rem 0; opacity: 0.8; border-radius: 3rem; text-indent: 4.9rem; outline: none; background: url(../images/icon/filter_arr.svg) no-repeat #fff 96%; -webkit-appearance: none; -moz-appearance: none; appearance: none;}
-.filterBox .filter select::-ms-expand {display: none;}
+.filterBox .filter button {width: 100%; font-size: 4.8rem; padding: 5.2rem 0; opacity: 0.8; border-radius: 3rem; outline: none; background: url(../images/icon/filter_arr.svg) no-repeat #fff 96%; border: 1px solid #a9a9a9; text-align: left; text-indent: 4.9rem;}
 .filterBox .filterTab {clear: both; height: 8rem;}
 .filterBox .filterTab ul {}
 .filterBox .filterTab ul li {float: left; width: 19%; margin-right: 8%; font-size: 4.6rem; height: 8rem; line-height: 8rem; text-align: center;}
@@ -126,9 +124,10 @@ div.container::-webkit-scrollbar {display: none;}
 .detail_list li a {display: block;}
 .detail_list li a .img {display: inline-block; width: 30%; margin-left: 2%; height: 25.2rem; overflow: hidden;}
 .detail_list li a .img .sumbnail {max-width: 100%; min-height: 100%;}
-.detail_list li a .right {position: absolute; top: 50%; margin-top: -10rem; right: 4%; width: 60%;}
+.detail_list li a .right {position: absolute; top: 50%; margin-top: -10rem; right: 4%; width: 60%; font-size: 3.8em;}
 .detail_list li a .right .tit {font-size: 5rem; margin-bottom: 3%; font-weight: bold;}
 .detail_list li a .right .address {display: block; font-size: 3.8rem; margin-bottom: 4%;}
+.detail_list li a .right .tel_no {font-size: 3.8rem;}
 .detail_list li a .right .num_views {}
 .detail_list li a .right .num_views li {font-size: 3.2rem; margin-right: 3.4rem;}
 .detail_list li a .right .num_views li img {margin-top: -0.5rem; margin-right: 1.4rem;}
@@ -167,8 +166,10 @@ div.container::-webkit-scrollbar {display: none;}
 .num_views {height: 6rem;}
 .num_views li {float: left; font-size: 4rem; margin-right: 3%; text-indent: 1rem;}
 .num_views img {display: inline-block; vertical-align: middle;}
+.viewBox_in.detail .title_box .left {font-size: 4rem;}
 .viewBox_in.detail .title_box .left .tit {font-size: 8.8rem; margin-bottom: 3.6rem;}
 .viewBox_in.detail .title_box .left .address {font-size: 4.2rem; margin-bottom: 2.4rem;}
+.viewBox_in.detail .title_box .left .tel_no {font-weight: 400;} 
 .viewBox_in.detail .title_box .left .fl {float: right; font-size: 4rem; margin-top: -0.4rem;}
 .viewBox_in.detail .title_box .left span {display: inline-block; vertical-align: middle; margin-left: 0.5rem; font-weight: lighter;}
 .viewBox_in.detail .contentsBox {clear: both; width: 100%; display: inline-block;}
@@ -200,14 +201,14 @@ div.container::-webkit-scrollbar {display: none;}
 .mapBg {overflow: hidden;}
 .mapBg .map {position: relative; width: 100%; height: 279rem; background-color: #f8f8f8;}
 .filterBox.search {position: absolute; width: 85%; top: 12.4rem; left: 7.5%; margin-top: 0; z-index: 99;}
-.filterBox .filter input {width: 100%; font-size: 4.8rem; padding: 5.2rem 0; opacity: 0.8; border-radius: 4rem; text-indent: 4.9rem; outline: none; border: 0.1rem solid #a9a9a9; z-index: 1;}
+.filterBox .filter input {width: 100%; font-size: 4.8rem; padding: 5.2rem 0; opacity: 0.9; border-radius: 4rem; text-indent: 4.9rem; outline: none; border: 0.1rem solid #a9a9a9; z-index: 1;}
 #search {position: absolute; top: 0; right: 4%; content:''; margin-top: 3.5rem; width: 8.7rem; background: url(../images/icon/search.svg) no-repeat; border: none; background-size: contain; text-indent: -9999px; cursor: pointer;}
-.result {display: none; position: fixed; bottom: 170px; width: 100%; height: 700px; background-color: #fff; border-radius: 5rem; opacity: 0.9; z-index: 100;}
+.result {display: none; position: fixed; bottom: 170px; width: 100%; height: 700px; background-color: #fff; border-radius: 5rem; opacity: 1; z-index: 100;}
 .result.on {display: block;}
 .result .left {position: absolute; top: 11.6rem; left: 6%; font-size: 4.5rem; }
 .result .left h3 {font-size: 8rem; margin-bottom: 3.6rem;}
 .result .left .address {font-size: 5rem; margin-bottom: 3.6rem;}
-.result .left .number {display: inline-block; font-size: 4.5rem; margin-bottom: 8rem;}
+.result .left .tel_no {display: inline-block; font-size: 4.5rem; margin-bottom: 8rem;}
 .result .favorite {position: absolute; top: 12rem; right: 6%; }
 .result .favorite .star {display: block; width: 6.8rem; height: 6.5rem; background: url(../images/icon/favorite_s_off.svg) no-repeat; background-size: contain;}
 .result .favorite.on .star {display: block; background: url(../images/icon/favorite_s_on.svg) no-repeat; background-size: contain;}
@@ -247,7 +248,7 @@ div.container::-webkit-scrollbar {display: none;}
     .slider .img .banner_word {font-size: 3.5rem; margin-top: -5rem; margin-left: -14rem;}
     .filterBox {margin: -3.75rem auto; margin-bottom: 4rem;}
     .filterBox .filter {margin-bottom: 3rem;}
-    .filterBox .filter select {font-size: 2.4rem; padding: 2.6rem 0; border-radius: 1.5rem; text-indent: 2.5rem; background-image: url(../images/icon/filter_arr_t.svg);}
+    .filterBox .filter button {font-size: 2.4rem; padding: 2.6rem 0; border-radius: 1.5rem; text-indent: 2.5rem; background-image: url(../images/icon/filter_arr_t.svg);}
     .filterBox .filterTab {height: 4rem;}
     .filterBox .filterTab ul li {font-size: 2.3rem; height: 4rem; line-height: 4rem;}
     .recommend_list {margin-bottom: 6rem;}
@@ -262,10 +263,10 @@ div.container::-webkit-scrollbar {display: none;}
     .grid li a .address {font-size: 1.4rem;}
     
     /* 탭 */
-    #mainTap {height: 8.5rem; line-height: 8.5rem;}
+    #mainTap {height:10.5rem; line-geight:10.5rem;}
     #mainTap a {line-height: 1.5rem;}
-    #mainTap a .hover .icon {width: 3.6rem; height: 4rem; margin-bottom: 0.6rem;}
-    #mainTap a .hover span {font-size: 1.8rem;}
+    #mainTap a .hover .icon {width:5.6rem; height: 6rem; margin-bottom: 0.9rem;}
+	#mainTap a .hover span {font-size: 2.1rem;}
     
     /* 상세리스트 */
     .back a {top: 3.25rem; left: 3.4rem;}
@@ -280,9 +281,10 @@ div.container::-webkit-scrollbar {display: none;}
     .detail_list {padding: 2.5rem 0;}
     .num_views {height: 3rem;}
     .detail_list li a .img {height: 14rem;}
-    .detail_list li a .right {margin-top: -5rem;}
+    .detail_list li a .right {margin-top: -5rem; font-size: 1.9rem;}
     .detail_list li a .right .tit {font-size: 2.5rem;}
     .detail_list li a .right .address {font-size: 2rem;}
+    .detail_list li a .right .tel_no {font-size: 1.9rem;}
     .detail_list li a .right .num_views li {font-size: 1.75rem; margin-right: 1rem;}
     .detail_list li a .right .num_views li img {width: 2rem; margin-top: -0.2rem; margin-right: 0.5rem;}
     .detail_list li .hidden .right {width: 0.4rem; top: 0.5rem; right: 1.5rem;}
@@ -305,8 +307,10 @@ div.container::-webkit-scrollbar {display: none;}
     .hidden .hidden_box li .star {width: 3.4rem; height: 3.25rem;}
     .hidden .hidden_box li .pin {height: 3.7rem; margin-left: 0.5rem;}
     .detail_list li .hidden .hidden_box {top: 3rem; right: 2rem;}
+    .viewBox_in.detail .title_box .left {font-size: 2rem;}
     .viewBox_in.detail .title_box .left .tit {font-size: 4.4rem; margin-bottom: 1.8rem;}
     .viewBox_in.detail .title_box .left .address {font-size: 2.1rem; margin-bottom: 1.2rem;}
+    .viewBox_in.detail .title_box .left .tel_no {font-size: 2rem;} 
     .num_views li {font-size: 2rem; text-indent: 0.5rem; margin-right: 1.5rem;}
     .num_views img {width: 2rem;}
     .viewBox_in.detail .title_box {padding-bottom: 1rem; margin-bottom: 4rem;}
@@ -328,7 +332,7 @@ div.container::-webkit-scrollbar {display: none;}
     .result .left h3 {font-size: 4rem; margin-bottom: 1.8rem;}
     .result .left .address {font-size: 2.5rem; margin-bottom: 1.8rem;}
     .result .left {top: 5.8rem; font-size: 2.25rem;}
-    .result .left .number{font-size: 2.25rem; ,bottom: 4rem;}
+    .result .left .tel_no {font-size: 2.25rem; bottom: 4rem;}
     .result .favorite {top: 6rem;}
     .result .favorite .star {width: 3.4rem; height: 3.25rem;}
     .result .call {bottom: 2.8rem; height: 8.5rem; font-size: 3.5rem; border-radius: 0.5rem;}
@@ -362,7 +366,7 @@ div.container::-webkit-scrollbar {display: none;}
     .filterBox {margin: -1.875rem auto; margin-bottom: 2rem;}
     .filterBox .filter {margin-bottom: 1.5rem;}
     .filterBox .filterTab ul li a:hover, .filterBox .filterTab ul li a.on {border: 0.1rem solid #006cff;}
-    .filterBox .filter select {font-size: 1.2rem; padding: 1.3rem 0; border-radius: 0.75rem; text-indent: 1.25rem; background-image: url(../images/icon/filter_arr_s.svg);}
+    .filterBox .filter button {font-size: 1.2rem; padding: 1.3rem 0; border-radius: 0.75rem; text-indent: 1.25rem; background-image: url(../images/icon/filter_arr_s.svg);}
     .filterBox .filterTab {height: 2rem;}
     .filterBox .filterTab ul li {font-size: 1.15rem; height: 2rem; line-height: 2rem;}
     .recommend_list {margin-bottom: 3rem;}
@@ -377,10 +381,10 @@ div.container::-webkit-scrollbar {display: none;}
     .grid li a .address {font-size: 0.7rem;}
     
     /* 탭 */
-    #mainTap {height: 4.25rem; line-height: 4.25rem;}
+    #mainTap {height: 6.25rem; line-height: 6.25rem;}
     #mainTap a {line-height: 0.75rem;}
-    #mainTap a .hover .icon {width: 1.8rem; height: 2rem; margin-bottom: 0.3rem;}
-    #mainTap a .hover span {font-size: 0.9rem;}
+    #mainTap a .hover .icon {width: 3.8rem; height:4rem; margin-bottom: 0.6rem;}
+	#mainTap a .hover span {font-size: 1.6rem;}
     
     /* 상세리스트 */
     .back a {top: 1.625rem; left: 1.7rem;}
@@ -395,9 +399,10 @@ div.container::-webkit-scrollbar {display: none;}
     .detail_list {padding: 1.25rem 0;}
     .num_views {height: 1.5rem;}
     .detail_list li a .img {height: 6.9rem;}
-    .detail_list li a .right {margin-top: -3rem;}
+    .detail_list li a .right {margin-top: -3rem; font-size: 0.95rem;}
     .detail_list li a .right .tit {font-size: 1.5rem;}
     .detail_list li a .right .address {font-size: 1rem;}
+    .detail_list li a .right .tel_no {font-size: 0.95rem;}
     .detail_list li a .right .num_views li {font-size: 0.875rem; margin-right: 0.5rem;}
     .detail_list li a .right .num_views li img {width: 1rem; margin-top: -0.1rem; margin-right: 0.25rem;}
     .detail_list li .hidden .right {width: 0.3rem; top: 0.8rem; right: 0.75rem;}
@@ -420,8 +425,10 @@ div.container::-webkit-scrollbar {display: none;}
     .hidden .hidden_box li .star {width: 1.7rem; height: 1.625rem;}
     .hidden .hidden_box li .pin {height: 1.85rem; margin-left: 0.25rem; }
     .detail_list li .hidden .hidden_box {top: 2.2rem; right: 1rem;}
+    .viewBox_in.detail .title_box .left {font-size: 1rem;}
     .viewBox_in.detail .title_box .left .tit {font-size: 2.2rem; margin-bottom: 0.9rem;}
     .viewBox_in.detail .title_box .left .address {font-size: 1.05rem; margin-bottom: 0.6rem;}
+    .viewBox_in.detail .title_box .left .tel_no {font-size: 1rem;} 
     .num_views li {font-size: 1rem; text-indent: 0.25rem; margin-right: 0.75rem;}
     .num_views img {width: 1rem;}
     .viewBox_in.detail .title_box {padding-bottom: 0.5rem; margin-bottom: 2rem;}
@@ -445,7 +452,7 @@ div.container::-webkit-scrollbar {display: none;}
     .result .left h3 {font-size: 2rem; margin-bottom: 0.9rem;}
     .result .left .address {font-size: 1.25rem; margin-bottom: 0.9rem;}
     .result .left {top: 2.9rem; font-size: 1.125rem;}
-    .result .left .number{font-size: 1.125rem; ,bottom: 2rem;}
+    .result .left .tel_no{font-size: 1.125rem; bottom: 2rem;}
     .result .favorite {top: 3rem;}
     .result .favorite .star {width: 1.7rem; height: 1.625rem;}
     .result .call {bottom: 1.4rem; height: 4.25rem; font-size: 1.75rem; border-radius: 0.25rem;}

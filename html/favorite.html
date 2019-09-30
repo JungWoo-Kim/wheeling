@@ -26,7 +26,63 @@
         
         <!-- S : 관광지 탭 -->
         <div id="tab-1" class="tab-content current">
-	        <div class="not">
+	        <div class="not none">
+	            <div>
+	                <p>나만의 장소를 모아보아요</p>
+	                <span>마음에 들거나<br>자주 방문하는 곳을 등록해 보세요</span>
+	            </div>
+	        </div>
+	        <div id="viewBox" class="favor">
+	            <div class="filter_result favor">
+	                <div class="result_top">
+	                    <p>총 <span class="all" id="all_tourism">0</span>건</p>
+	                </div>
+	            </div>
+	            <div class="viewBox_in">
+	                <div class="recommend_list" id="recommend_list_tourism">
+	                    <!-- <ul class="detail_list on">
+	                        <li>
+	                            <a href="main_list_detail">
+	                                <div class="img">
+	                                    <img class="sumbnail" src="../images/image.jpg" alt="">
+	                                </div>
+	                                <div class="right">
+	                                    <p class="tit">경복궁</p>
+	                                    <span class="address">서울특별시 종로구 세종로 사직로 161</span>
+	                                    <ul class="num_views">
+	                                        <li><img src="../images/icon/views.svg" alt=""><span>10,204</span></li>
+	                                        <li><img src="../images/icon/goods.svg" alt=""><span>154</span></li>
+	                                        <li><img src="../images/icon/share_s.svg" alt=""><span>25</span></li>
+	                                    </ul>
+	                                </div>
+	                            </a>
+	                            <button class="hidden">
+	                                <img class="right" src="../images/icon/hide.svg" alt="">
+	                                <ul class="hidden_box on">
+	                                    <li class="on">
+	                                        <span class="star"></span>
+	                                        <span class="active">즐겨찾기 해제</span>
+	                                    </li>
+	                                    <li class="on">
+	                                        <span class="pin"></span>
+	                                        <span class="active">상단 고정 해제</span>
+	                                    </li>
+	                                    <li>
+	                                        <img src="../images/icon/share.svg" alt="">
+	                                        <span>공유하기</span>
+	                                    </li>
+	                                </ul>
+	                            </button>
+	                        </li>
+	                    </ul>END) detail_list -->
+	                </div><!--END) commend_list -->
+	            </div>
+	        </div><!--END) viewBox -->
+        </div>
+        <!-- E : 관광지 탭 -->
+        <!-- S : 숙박 탭 -->
+        <div id="tab-2" class="tab-content">
+			<div class="not none">
 	            <div>
 	                <p>나만의 장소를 모아보아요</p>
 	                <span>마음에 들거나<br>자주 방문하는 곳을 등록해 보세요</span>
@@ -39,8 +95,8 @@
 	                </div>
 	            </div>
 	            <div class="viewBox_in">
-	                <div class="recommend_list">
-	                    <ul class="detail_list on">
+	                <div class="recommend_list" id="recommend_list_lodgment">
+	                   <!--  <ul class="detail_list on">
 	                        <li>
 	                            <a href="main_list_detail">
 	                                <div class="img">
@@ -74,63 +130,7 @@
 	                                </ul>
 	                            </button>
 	                        </li>
-	                    </ul><!--END) detail_list -->
-	                </div><!--END) commend_list -->
-	            </div>
-	        </div><!--END) viewBox -->
-        </div>
-        <!-- E : 관광지 탭 -->
-        <!-- S : 숙박 탭 -->
-        <div id="tab-2" class="tab-content">
-			<div class="not">
-	            <div>
-	                <p>나만의 장소를 모아보아요</p>
-	                <span>마음에 들거나<br>자주 방문하는 곳을 등록해 보세요</span>
-	            </div>
-	        </div>
-	        <div id="viewBox" class="favor">
-	            <div class="filter_result favor">
-	                <div class="result_top">
-	                    <p>총 <span class="all">0</span>건</p>
-	                </div>
-	            </div>
-	            <div class="viewBox_in">
-	                <div class="recommend_list">
-	                    <ul class="detail_list on">
-	                        <li>
-	                            <a href="main_list_detail">
-	                                <div class="img">
-	                                    <img class="sumbnail" src="../images/image.jpg" alt="">
-	                                </div>
-	                                <div class="right">
-	                                    <p class="tit">경복궁</p>
-	                                    <span class="address">서울특별시 종로구 세종로 사직로 161</span>
-	                                    <ul class="num_views">
-	                                        <li><img src="../images/icon/views.svg" alt=""><span>10,204</span></li>
-	                                        <li><img src="../images/icon/goods.svg" alt=""><span>154</span></li>
-	                                        <li><img src="../images/icon/share_s.svg" alt=""><span>25</span></li>
-	                                    </ul>
-	                                </div>
-	                            </a>
-	                            <button class="hidden">
-	                                <img class="right" src="../images/icon/hide.svg" alt="">
-	                                <ul class="hidden_box on">
-	                                    <li class="on">
-	                                        <span class="star"></span>
-	                                        <span class="active">즐겨찾기 해제</span>
-	                                    </li>
-	                                    <li class="on">
-	                                        <span class="pin"></span>
-	                                        <span class="active">상단 고정 해제</span>
-	                                    </li>
-	                                    <li>
-	                                        <img src="../images/icon/share.svg" alt="">
-	                                        <span>공유하기</span>
-	                                    </li>
-	                                </ul>
-	                            </button>
-	                        </li>
-	                    </ul><!--END) detail_list -->
+	                    </ul>END) detail_list -->
 	                </div><!--END) commend_list -->
 	            </div>
 	        </div><!--END) viewBox -->
@@ -138,7 +138,7 @@
         <!-- E : 숙박 탭 -->
         <!-- S : 음식점 탭 -->
         <div id="tab-3" class="tab-content">
-	        <div class="not">
+	        <div class="not none">
 	            <div>
 	                <p>나만의 장소를 모아보아요</p>
 	                <span>마음에 들거나<br>자주 방문하는 곳을 등록해 보세요</span>
@@ -151,7 +151,7 @@
 	                </div>
 	            </div>
 	            <div class="viewBox_in">
-	                <div class="recommend_list">
+	                <div class="recommend_list" id="recommend_list_restaurant" >
 	                    <ul class="detail_list on">
 	                        <li>
 	                            <a href="main_list_detail">
@@ -242,33 +242,47 @@
 
 <script>
 
+		var wheelCnt=0;
+		var tourismCnt=0;
+		var lodgmentCnt=0;
+		var restaurantCnt=0;
+
 	$(document).ready(function(){
 		
-		$('#tab-1 .not').addClass('none');
-		$('#tab-2 .not').addClass('none');
-		$('#tab-3 .not').addClass('none');
-    	$('#tab-4 .not').addClass('none');
 		//탭 메뉴 이동
 		$('ul.tabs li').click(function(){
 			
 		    var tab_id = $(this).attr('data-tab');
 		    switch(tab_id){
 		    case "tab-1": 
+		    	
+		    	if(tourismCnt==0){
+		    		$('#tab-1 .not').removeClass('none');
+		    	} 
 				$('#tab-2 .not').addClass('none');
 				$('#tab-3 .not').addClass('none');
 		    	$('#tab-4 .not').addClass('none');
 		    	break;
 		    case "tab-2": 
+		    	if(lodgmentCnt==0){
+		    		$('#tab-1 .not').removeClass('none');
+		    	} 
 				$('#tab-1 .not').addClass('none');
 				$('#tab-3 .not').addClass('none');
 		    	$('#tab-4 .not').addClass('none');
 		    	break;
 		    case "tab-3": 
+		    	if(restaurantCnt==0){
+		    		$('#tab-1 .not').removeClass('none');
+		    	} 
 				$('#tab-1 .not').addClass('none');
 				$('#tab-2 .not').addClass('none');
 		    	$('#tab-4 .not').addClass('none');
 		    	break;
 		    case "tab-4": 
+		    	if(wheelCnt==0){
+		    		$('#tab-1 .not').removeClass('none');
+		    	} 
 				$('#tab-1 .not').addClass('none');
 				$('#tab-2 .not').addClass('none');
 		    	$('#tab-3 .not').addClass('none');
@@ -295,7 +309,6 @@
 		var sttnInfos = JSON.parse(getCookie(cookieNm) || '[]');
 		var check = false;
 		var list = [];
-		var cnt=0;
 		
 		for(var i=0; i<sttnInfos.length; i++) {
  			if(sttnInfos[i].favorite == true) {
@@ -304,7 +317,7 @@
  					'<ul class="detail_list" id="ul_list_'+i+'"><li id="li_list_'+i+'">',
  		                '<a href="">',
  		                    '<div class="img"><img class="sumbnail" src="../images/image_wheelchair.png" alt=""></div>',
- 		                    '<div class="right"><p class="tit">'+sttnInfos[i].stationName+'</p><span class="address">'+sttnInfos[i].address+'</span><span class="tel">'+sttnInfos[i].telNumber+'</span></div>',
+ 		                    '<div class="right"><p class="tit">'+sttnInfos[i].stationName+'</p><span class="address">'+sttnInfos[i].address+'</span><span class="tel_no">T.'+sttnInfos[i].telNumber+'</span></div>',
  		                '</a>',
  		                '<button class="hidden" onclick="selectMenu('+i+');">',
  		                    '<img class="right" src="../images/icon/hide.svg" alt="">',
@@ -318,23 +331,70 @@
  					].join('');
  				
  			    $("#recommend_list_wheel").append(ul);
- 			    cnt++;
+ 			   wheelCnt++;
 			} 
 		}
 		
-		if(cnt==0) {
+		if(wheelCnt==0) {
 			$('#tab-4 .not').removeClass('none');
 		}
 		
-		$('#all_wheel').html(cnt);
+		$('#all_wheel').html(wheelCnt);
+	}
+	
+	function getCookieTourismFavorite() {
+		$("#recommend_list_tourism ul").remove();
+
+		var cookieNm = 'tourismFavorite';
+		var tourismInfos = JSON.parse(getCookie(cookieNm) || '[]');
+		var check = false;
+		var list = [];
+		var wheelCnt=0;
+		
+		for(var i=0; i<tourismInfos.length; i++) {
+ 			if(tourismInfos[i].favorite == true) {
+ 				var str ="\'"+tourismInfos[i].stationName+"\'" +","+ "\'"+tourismInfos[i].address+"\'" +","+ "\'"+tourismInfos[i].telNumber+"\'";
+ 				var ul = [
+ 					'<ul class="detail_list" id="ul_list_'+i+'"><li id="li_list_'+i+'">',
+ 		                
+ 					'<a href="main_list_detail.html"><div class="img">',
+						'<img class="sumbnail" src="'+(tourismInfos[i].images != null ? data.images : "http://wis.seoul.go.kr/rest/file/thumbnail/9ifmzu0qgiqp0i99vy63sni68d77qpov/1")+'"alt="">',
+						'</div><div class="right"><p class="tit">' + data.sisulname
+							+ '</p>',
+						'<span class="address">' + data.addr + '</span>',
+						'<span class="tel_no">T.' + data.tel + '</span>',
+						'</div>',
+					'</a>',
+ 		                
+ 		                '<button class="hidden" onclick="selectMenu('+i+');">',
+ 		                    '<img class="right" src="../images/icon/hide.svg" alt="">',
+ 		                    '<ul class="hidden_box ">',
+ 		                        '<li class="on"><span class="star"></span><span class="active" onclick="offFavorite('+str+');">즐겨찾기 해제</span></li>',
+ 		                        /* '<li class="on"><span class="pin"></span><span class="active">상단 고정 해제</span></li>', */
+ 		                        /* '<li><img src="../images/icon/share.svg" alt=""><span>공유하기</span></li>', */
+ 		                    '</ul>',
+ 		                '</button>',
+ 		            '</li></ul>'
+ 					].join('');
+ 				
+ 			    $("#recommend_list_tourism").append(ul);
+ 			   wheelCnt++;
+			} 
+		}
+		
+		if(wheelCnt==0) {
+			$('#tab-4 .not').removeClass('none');
+		}
+		
+		$('#all_tour').html(cnt);
 	}
 
 	function selectMenu(id) {
-		$('#recommend_list_wheel .detail_list li .hidden .hidden_box').removeClass('on');
-		if($('#recommend_list_wheel .detail_list #li_list_'+id+' .hidden .hidden_box').hasClass('on')) {
-			$('#recommend_list_wheel .detail_list #li_list_'+id+' .hidden .hidden_box').removeClass('on');
+		$('#recommend_list_tourism .detail_list li .hidden .hidden_box').removeClass('on');
+		if($('#recommend_list_tourism .detail_list #li_list_'+id+' .hidden .hidden_box').hasClass('on')) {
+			$('#recommend_list_tourism .detail_list #li_list_'+id+' .hidden .hidden_box').removeClass('on');
 		} else {
-			$('#recommend_list_wheel .detail_list #li_list_'+id+' .hidden .hidden_box').addClass('on');
+			$('#recommend_list_tourism .detail_list #li_list_'+id+' .hidden .hidden_box').addClass('on');
 		} 
 	}
 	
@@ -367,7 +427,7 @@
 		
 		setCookie(cookieNm, JSON.stringify(sttnInfos),90)
 		
-		$('#recommend_list_wheel .detail_list li .hidden .hidden_box').removeClass('on');
+		$('#recommend_list_ .detail_list li .hidden .hidden_box').removeClass('on');
 
 		getCookieWheelFavorite();
 	}
