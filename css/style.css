@@ -48,14 +48,14 @@ div.container::-webkit-scrollbar {display: none;}
 .orange {color: #ff7200;}
 
 /* main tap */
-#mainTap {position: fixed; bottom: 0; width: 100%; height:21rem; line-height:21rem; text-align: center; overflow: hidden; border-top: 0.1rem solid #a9a9a9; background-color: #fff; z-index: 100;}
+#mainTap {position: fixed; bottom: 0; width: 100%; height: 17rem; line-height: 17rem; text-align: center; overflow: hidden; border-top: 0.1rem solid #a9a9a9; background-color: #fff; z-index: 100;}
 #mainTap a {position: relative; display: inline-block; vertical-align: middle; width: 32%; line-height: 3rem;}
 #mainTap a .hover { width: 100%; }
 #mainTap a .hover .icon {margin: 0 auto; text-indent: -9999px; margin-bottom: 1.7rem;}
 #mainTap a .hover span {font-size: 3.6rem;}
-#mainTap .home .icon {width: 10.3rem; height: 9.3rem; background: url('../images/icon/home_off.svg') no-repeat; background-size: contain;}
-#mainTap .map .icon {width: 10.4rem; height: 9.4rem; background: url('../images/icon/wheel_off.svg') no-repeat; background-size: contain;}
-#mainTap .favorite .icon {width: 9.3rem; height: 9rem; background: url('../images/icon/favorite_off.svg') no-repeat; background-size: contain;}
+#mainTap .home .icon {width: 8.3rem; height: 7.3rem; background: url('../images/icon/home_off.svg') no-repeat; background-size: contain;}
+#mainTap .map .icon {width: 8.4rem; height: 7.4rem; background: url('../images/icon/wheel_off.svg') no-repeat; background-size: contain;}
+#mainTap .favorite .icon {width: 7.3rem; height: 7rem; background: url('../images/icon/favorite_off.svg') no-repeat; background-size: contain;}
 /*#mainTap a:hover .hover {position: absolute; top: -181px; background-color: #e0eff5; vertical-align: middle;  height: 363px; line-height: 262px; border-radius: 500px;}*/
 #mainTap a:hover span,
 #mainTap a.active span {color: #006cff; font-weight: bold;}
@@ -263,10 +263,10 @@ div.container::-webkit-scrollbar {display: none;}
     .grid li a .address {font-size: 1.4rem;}
     
     /* 탭 */
-    #mainTap {height:10.5rem; line-geight:10.5rem;}
+    #mainTap {height: 8.5rem; line-height: 8.5rem;}
     #mainTap a {line-height: 1.5rem;}
-    #mainTap a .hover .icon {width:5.6rem; height: 6rem; margin-bottom: 0.9rem;}
-	#mainTap a .hover span {font-size: 2.1rem;}
+    #mainTap a .hover .icon {width: 3.6rem; height: 4rem; margin-bottom: 0.6rem;}
+    #mainTap a .hover span {font-size: 1.8rem;}
     
     /* 상세리스트 */
     .back a {top: 3.25rem; left: 3.4rem;}
@@ -381,10 +381,10 @@ div.container::-webkit-scrollbar {display: none;}
     .grid li a .address {font-size: 0.7rem;}
     
     /* 탭 */
-    #mainTap {height: 6.25rem; line-height: 6.25rem;}
+    #mainTap {height: 5.25rem; line-height: 5.25rem;}
     #mainTap a {line-height: 0.75rem;}
-    #mainTap a .hover .icon {width: 3.8rem; height:4rem; margin-bottom: 0.6rem;}
-	#mainTap a .hover span {font-size: 1.6rem;}
+    #mainTap a .hover .icon {width: 2.4rem; height: 2.5rem; margin-bottom: 0.6rem;}
+    #mainTap a .hover span {font-size: 1.2rem;}
     
     /* 상세리스트 */
     .back a {top: 1.625rem; left: 1.7rem;}

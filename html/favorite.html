@@ -242,7 +242,7 @@
 
 <script>
 
-		var wheelCnt=0;
+		
 		var tourismCnt=0;
 		var lodgmentCnt=0;
 		var restaurantCnt=0;
@@ -255,34 +255,59 @@
 		    var tab_id = $(this).attr('data-tab');
 		    switch(tab_id){
 		    case "tab-1": 
-		    	
+		    	/* $('#all_wheel').html(tourismCnt); */
+		    	$('#recommend_list_tourism').css("display","block");
+	    		$('#recommend_list_lodgment').css("display","none");
+	    		$('#recommend_list_restaurant').css("display","none");
+	    		$('#recommend_list_wheel').css("display","none");
 		    	if(tourismCnt==0){
+		    		
 		    		$('#tab-1 .not').removeClass('none');
+		    		$('#recommend_list_tourism').css("display","none");
 		    	} 
 				$('#tab-2 .not').addClass('none');
 				$('#tab-3 .not').addClass('none');
 		    	$('#tab-4 .not').addClass('none');
 		    	break;
 		    case "tab-2": 
+		    	/* $('#all_wheel').html(lodgmentCnt); */
+		    	$('#recommend_list_tourism').css("display","none");
+	    		$('#recommend_list_lodgment').css("display","block");
+	    		$('#recommend_list_restaurant').css("display","none");
+	    		$('#recommend_list_wheel').css("display","none");
 		    	if(lodgmentCnt==0){
-		    		$('#tab-1 .not').removeClass('none');
+		    		$('#tab-2 .not').removeClass('none');
+	    			$('#recommend_list_lodgment').css("display","none");
 		    	} 
 				$('#tab-1 .not').addClass('none');
 				$('#tab-3 .not').addClass('none');
 		    	$('#tab-4 .not').addClass('none');
 		    	break;
 		    case "tab-3": 
+		    	/* $('#all_wheel').html(restaurantCnt); */
+		    	$('#recommend_list_tourism').css("display","none");
+	    		$('#recommend_list_lodgment').css("display","none");
+	    		$('#recommend_list_restaurant').css("display","block");
+	    		$('#recommend_list_wheel').css("display","none");
 		    	if(restaurantCnt==0){
-		    		$('#tab-1 .not').removeClass('none');
+		    		$('#tab-3 .not').removeClass('none');
+	    			$('#recommend_list_restaurant').css("display","none");
 		    	} 
 				$('#tab-1 .not').addClass('none');
 				$('#tab-2 .not').addClass('none');
 		    	$('#tab-4 .not').addClass('none');
 		    	break;
 		    case "tab-4": 
-		    	if(wheelCnt==0){
-		    		$('#tab-1 .not').removeClass('none');
-		    	} 
+		    	/* $('#all_wheel').html(wheelCnt); */
+		    	
+		    		$('#recommend_list_tourism').css("display","none");
+		    		$('#recommend_list_lodgment').css("display","none");
+		    		$('#recommend_list_restaurant').css("display","none");
+		    		$('#recommend_list_wheel').css("display","block");
+		    	/* if(wheelCnt==0){
+		    		$('#tab-4 .not').removeClass('none');
+		    		$('#recommend_list_wheel').css("display","none");
+		    	}  */
 				$('#tab-1 .not').addClass('none');
 				$('#tab-2 .not').addClass('none');
 		    	$('#tab-3 .not').addClass('none');
@@ -299,7 +324,7 @@
 		    $("#"+tab_id).addClass('current');
 		})
 		getCookieWheelFavorite();	
-		
+		getCookieTourismFavorite();	
 	}); 
 	
 	function getCookieWheelFavorite() {
@@ -307,7 +332,9 @@
 
 		var cookieNm = 'wheelFavorite';
 		var sttnInfos = JSON.parse(getCookie(cookieNm) || '[]');
+		var wheelCnt=0;
 		var check = false;
+		
 		var list = [];
 		
 		for(var i=0; i<sttnInfos.length; i++) {
@@ -319,7 +346,7 @@
  		                    '<div class="img"><img class="sumbnail" src="../images/image_wheelchair.png" alt=""></div>',
  		                    '<div class="right"><p class="tit">'+sttnInfos[i].stationName+'</p><span class="address">'+sttnInfos[i].address+'</span><span class="tel_no">T.'+sttnInfos[i].telNumber+'</span></div>',
  		                '</a>',
- 		                '<button class="hidden" onclick="selectMenu('+i+');">',
+ 		                '<button class="hidden" onclick="wheelSelectMenu('+i+');">',
  		                    '<img class="right" src="../images/icon/hide.svg" alt="">',
  		                    '<ul class="hidden_box ">',
  		                        '<li class="on"><span class="star"></span><span class="active" onclick="offFavorite('+str+');">즐겨찾기 해제</span></li>',
@@ -348,25 +375,25 @@
 		var cookieNm = 'tourismFavorite';
 		var tourismInfos = JSON.parse(getCookie(cookieNm) || '[]');
 		var check = false;
+		
 		var list = [];
-		var wheelCnt=0;
 		
 		for(var i=0; i<tourismInfos.length; i++) {
  			if(tourismInfos[i].favorite == true) {
- 				var str ="\'"+tourismInfos[i].stationName+"\'" +","+ "\'"+tourismInfos[i].address+"\'" +","+ "\'"+tourismInfos[i].telNumber+"\'";
+ 				var str ="\'"+tourismInfos[i].images+"\'" +","+ "\'"+tourismInfos[i].sisulname+"\'" +","+ "\'"+tourismInfos[i].telNumber+"\'";
  				var ul = [
  					'<ul class="detail_list" id="ul_list_'+i+'"><li id="li_list_'+i+'">',
  		                
  					'<a href="main_list_detail.html"><div class="img">',
-						'<img class="sumbnail" src="'+(tourismInfos[i].images != null ? data.images : "http://wis.seoul.go.kr/rest/file/thumbnail/9ifmzu0qgiqp0i99vy63sni68d77qpov/1")+'"alt="">',
-						'</div><div class="right"><p class="tit">' + data.sisulname
+						'<img class="sumbnail" src="'+(tourismInfos[i].images != null ? tourismInfos[i].images : "http://wis.seoul.go.kr/rest/file/thumbnail/9ifmzu0qgiqp0i99vy63sni68d77qpov/1")+'"alt="">',
+						'</div><div class="right"><p class="tit">' + tourismInfos[i].sisulname
 							+ '</p>',
-						'<span class="address">' + data.addr + '</span>',
-						'<span class="tel_no">T.' + data.tel + '</span>',
+						'<span class="address">' + tourismInfos[i].address + '</span>',
+						'<span class="tel_no">T.' + tourismInfos[i].tel + '</span>',
 						'</div>',
 					'</a>',
  		                
- 		                '<button class="hidden" onclick="selectMenu('+i+');">',
+ 		                '<button class="hidden" onclick="tourismSelectMenu('+i+');">',
  		                    '<img class="right" src="../images/icon/hide.svg" alt="">',
  		                    '<ul class="hidden_box ">',
  		                        '<li class="on"><span class="star"></span><span class="active" onclick="offFavorite('+str+');">즐겨찾기 해제</span></li>',
@@ -378,7 +405,7 @@
  					].join('');
  				
  			    $("#recommend_list_tourism").append(ul);
- 			   wheelCnt++;
+ 			  	tourismCnt++;
 			} 
 		}
 		
@@ -386,10 +413,19 @@
 			$('#tab-4 .not').removeClass('none');
 		}
 		
-		$('#all_tour').html(cnt);
+		$('#all_tourism').html(tourismCnt);
 	}
 
-	function selectMenu(id) {
+	function wheelSelectMenu(id) {
+		$('#recommend_list_wheel .detail_list li .hidden .hidden_box').removeClass('on');
+		if($('#recommend_list_wheel .detail_list #li_list_'+id+' .hidden .hidden_box').hasClass('on')) {
+			$('#recommend_list_wheel .detail_list #li_list_'+id+' .hidden .hidden_box').removeClass('on');
+		} else {
+			$('#recommend_list_wheel .detail_list #li_list_'+id+' .hidden .hidden_box').addClass('on');
+		} 
+	}
+	
+	function tourismSelectMenu(id) {
 		$('#recommend_list_tourism .detail_list li .hidden .hidden_box').removeClass('on');
 		if($('#recommend_list_tourism .detail_list #li_list_'+id+' .hidden .hidden_box').hasClass('on')) {
 			$('#recommend_list_tourism .detail_list #li_list_'+id+' .hidden .hidden_box').removeClass('on');

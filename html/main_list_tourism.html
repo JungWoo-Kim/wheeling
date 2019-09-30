@@ -196,10 +196,6 @@
 		
 	});
 	
-	
-
-	
-	
 	function getJsonTourism() {
 		$.ajax({
 			url : '../json/tourism.json',
@@ -229,10 +225,10 @@
 					'<span class="tel_no">T.'+(data.tel != null ? data.tel : "번호가 없습니다.")+'</span>',
 					'</div>',
 					'</a>',
-					'<button class="hidden" onclick="selectMenu('+i+');">',
+					'<button class="hidden" onclick="tourismSelectMenu('+i+');">',
 	                    '<img class="right" src="../images/icon/hide.svg" alt="">',
 	                    '<ul class="hidden_box ">',
-	                        '<li class="on"><span class="star"></span><span class="active" onclick="insertFavorite();">즐겨찾기</span></li>',
+	                        '<li class=""><span class="star"></span><span class="active" onclick="insertFavorite();">즐겨찾기</span></li>',
 	                        /* '<li class="on"><span class="pin"></span><span class="active">상단 고정 해제</span></li>', */
 	                        /* '<li><img src="../images/icon/share.svg" alt=""><span>공유하기</span></li>', */
 	                    '</ul>',
@@ -245,7 +241,7 @@
 		$('.all').html(tourismTotalCnt);
 	}
 	
-	function selectMenu(id) {
+	function tourismSelectMenu(id) {
 		$('#recommend_list_tourism .detail_list li .hidden .hidden_box').removeClass('on');
 		if($('#recommend_list_tourism .detail_list #li_list_'+id+' .hidden .hidden_box').hasClass('on')) {
 			$('#recommend_list_tourism .detail_list #li_list_'+id+' .hidden .hidden_box').removeClass('on');
@@ -254,19 +250,20 @@
 		} 
 	}
 	
-	function offFavorite(nm, addr, tel) {
-		var sttnNm = nm;	
+	function offFavorite(images, sisulname, addr, tel) {
+		var images = images;	
+		var sisulname = sisulname;	
 		var addr = addr;
-		var telNo = tel;
+		var tel = tel;
 		var fvrt = false;
 
-		var cookieNm = 'wheelFavorite';
+		var cookieNm = 'tourismFavorite';
 
 		var sttnInfos = JSON.parse(getCookie(cookieNm) || '[]');
 		var index;
 		
 		for(var i=0; i<sttnInfos.length; i++) {
-			if(sttnInfos[i].stationName == sttnNm) {
+			if(tourismInfos[i].sisulname == sisulname) {
 				index = i;
 			}
 		} 
@@ -275,7 +272,7 @@
 			sttnInfos.splice(index, 1);
 		}
 		
-		sttnInfos.push({stationName : sttnNm, address : addr, telNumber : telNo, favorite : fvrt});
+		sttnInfos.push({images:images, sisulname : sisulname, addr : addr, tel : tel, favorite : fvrt});
 		
 		if(sttnInfos.length > 100){
 			sttnInfos.shift();
@@ -283,7 +280,7 @@
 		
 		setCookie(cookieNm, JSON.stringify(sttnInfos),90)
 		
-		$('#recommend_list .detail_list li .hidden .hidden_box').removeClass('on');
+		$('#recommend_list_tourism .detail_list li .hidden .hidden_box').removeClass('on');
 
 		getCookieWheelFavorite();
 	}
@@ -395,7 +392,7 @@
 
 		setCookie(cookieNm, JSON.stringify(tourismInfos),90);
 
-		alert(getCookie(cookieNm));
+		//alert(getCookie(cookieNm));
 	}
 
 	function checkFavorite(sttnNm) {
